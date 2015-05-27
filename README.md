@@ -10,7 +10,7 @@ send cloud django 插件
 python setup.py install
 ```
 
-** 在 Django 的 settings.py 加入** 
+**在 Django 的 settings.py 加入** 
 
 ```
 EMAIL_BACKEND = 'sendcloud.SendCloudBackend'
