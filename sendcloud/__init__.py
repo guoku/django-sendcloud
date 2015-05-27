@@ -101,7 +101,7 @@ class SendCloudBackend(BaseEmailBackend):
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])
             return False
-        
+
         return True
 
     def send_messages(self, email_messages):
