@@ -36,7 +36,7 @@ class SendCloudBackend(BaseEmailBackend):
                 self._app_user, self._app_key = None, None
             else:
                 raise
-        print self._app_key, self._app_user
+        # print self._app_key, self._app_user
         self._api_url = "http://sendcloud.sohu.com/webapi/mail.send.json"
 
     @property
@@ -61,16 +61,24 @@ class SendCloudBackend(BaseEmailBackend):
         """A helper method that does the actual sending."""
         if not email_message.recipients():
             return False
-        print dir(email_message)
+        # print dir(email_message)
         # print email_message.body
         from_email = sanitize_address(email_message.from_email, email_message.encoding)
 
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
         # print StringIO(email_message.message().as_string())
+        data={
+                    "api_user": self.app_user,
+                    "api_key": self.app_key,
+                    "to": ";".join(recipients),
+                    "from": from_email,
+                    "fromname" : "guoku",
+                    "subject": email_message.subject,
+                    "html": email_message.body,
+                    "resp_email_id": "true",
+                }
 
-
-        # print params
         try:
             r = requests.post(self.api_url, data={
                     "api_user": self.app_user,
@@ -82,8 +90,7 @@ class SendCloudBackend(BaseEmailBackend):
                     "html": email_message.body,
                     "resp_email_id": "true",
                 },)
-            # print r.text
-            # print r.json()
+
         except Exception:
             if not self.fail_silently:
                 raise
@@ -94,10 +101,7 @@ class SendCloudBackend(BaseEmailBackend):
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])
             return False
-        # if r.status_code != 200:
-        #     if not self.fail_silently:
-        #         raise SendCloudAPIError(r)
-        #     return False
+
 
         return True
 
