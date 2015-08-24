@@ -34,9 +34,6 @@ class SendCloudBackend(BaseEmailBackend):
             self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
             self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
         except AttributeError:
-            if app_user and app_key:
-                self.app_user = app_user
-                self.app_key = app_key
             if fail_silently:
                 self._app_user, self._app_key = None, None
             else:
