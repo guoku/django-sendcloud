@@ -1,4 +1,6 @@
+# -*- encoding: utf8 -*-
 import requests
+import json
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
@@ -12,6 +14,7 @@ except ImportError:
     except ImportError:
         from StringIO import StringIO
 
+
 class SendCloudAPIError(Exception):
     pass
 
@@ -23,11 +26,10 @@ class SendCloudBackend(BaseEmailBackend):
 
     def __init__(self, fail_silently=False, *args, **kwargs):
         app_user, app_key = (kwargs.pop('app_user', None),
-                                   kwargs.pop('app_key', None))
+                             kwargs.pop('app_key', None))
 
-        super(SendCloudBackend, self).__init__(
-                        fail_silently=fail_silently,
-                        *args, **kwargs)
+        super(SendCloudBackend, self).__init__(fail_silently=fail_silently,
+                                               *args, **kwargs)
         try:
             self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
             self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
@@ -37,7 +39,7 @@ class SendCloudBackend(BaseEmailBackend):
             else:
                 raise
         # print self._app_key, self._app_user
-        self._api_url = "http://sendcloud.sohu.com/webapi/mail.send.json"
+        self._api_url = "http://sendcloud.sohu.com/webapi/mail.send_template.json"
 
     @property
     def app_user(self):
@@ -63,34 +65,30 @@ class SendCloudBackend(BaseEmailBackend):
             return False
         # print dir(email_message)
         # print email_message.body
-        from_email = sanitize_address(email_message.from_email, email_message.encoding)
+        from_email = sanitize_address(email_message.from_email,
+                                      email_message.encoding)
 
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
-        # print StringIO(email_message.message().as_string())
-        data={
-                    "api_user": self.app_user,
-                    "api_key": self.app_key,
-                    "to": ";".join(recipients),
-                    "from": from_email,
-                    "fromname" : "guoku",
-                    "subject": email_message.subject,
-                    "html": email_message.body,
-                    "resp_email_id": "true",
-                }
+
+        template = email_message.template_invoke_name
+        sub_vars = {
+            'to': recipients,
+            'sub': email_message.sub_vars
+        }
+
+        params = {
+            "api_user": self.app_user,
+            "api_key": self.app_key,
+            "template_invoke_name": template,
+            "substitution_vars": json.dumps(sub_vars),
+            "from": from_email,
+            "fromname": "Guoku",
+            "resp_email_id": "true",
+        }
 
         try:
-            r = requests.post(self.api_url, data={
-                    "api_user": self.app_user,
-                    "api_key": self.app_key,
-                    "to": ";".join(recipients),
-                    "from": from_email,
-                    "fromname" : "guoku",
-                    "subject": email_message.subject,
-                    "html": email_message.body,
-                    "resp_email_id": "true",
-                },)
-
+            r = requests.post(self.api_url, data=params)
         except Exception:
             if not self.fail_silently:
                 raise
@@ -117,5 +115,6 @@ class SendCloudBackend(BaseEmailBackend):
                 num_sent += 1
 
         return num_sent
+
 
 __author__ = 'edison7500'
