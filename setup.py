@@ -22,7 +22,7 @@ CLASSIFIERS = [
 
 setup(
     name='django-sendcloud',
-    version='0.1',
+    version='0.2',
     packages=['sendcloud'],
     author='jiaxin',
     author_email='jiaxin@guoku.com',
