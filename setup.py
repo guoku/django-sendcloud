@@ -34,7 +34,6 @@ setup(
     install_requires=['requests'],
     classifiers=CLASSIFIERS,
     zip_safe = False,
-    #TODO: get mailgun into pypi so it can be a requirement :)
 )
 
 __author__ = 'edison7500'
