@@ -63,11 +63,10 @@ class SendCloudBackend(BaseEmailBackend):
         """A helper method that does the actual sending."""
         if not email_message.recipients():
             return False
-        # print dir(email_message)
-        # print email_message.body
         from_email = sanitize_address(email_message.from_email,
                                       email_message.encoding)
-
+        from_name = sanitize_address(email_message.from_name,
+                                     email_message.encoding)
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
 
@@ -83,7 +82,8 @@ class SendCloudBackend(BaseEmailBackend):
             "template_invoke_name": template,
             "substitution_vars": json.dumps(sub_vars),
             "from": from_email,
-            "fromname": "Guoku",
+            "mail_from": from_email,
+            "fromname": from_name,
             "resp_email_id": "true",
         }
 
