@@ -1,4 +1,5 @@
 # -*- encoding: utf8 -*-
+
 import requests
 import json
 from django.conf import settings
