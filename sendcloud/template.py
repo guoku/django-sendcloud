@@ -1,38 +1,33 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from django.conf import settings
-import requests
-from sendcloud import SendCloudAPIError
+from sendcloud import APIBaseClass
 
 
-class SendCloudTemplate(object):
+class SendCloudTemplate(APIBaseClass):
+
     def __init__(self, invoke_name, fail_silently=False, *args, **kwargs):
-        edm_user, api_key = (kwargs.pop('edm_user', None),
-                             kwargs.pop('app_key', None))
-        self.fail_silently = fail_silently
+        _edm_user = kwargs.pop('edm_user', None)
+        try:
+            self.invoke_name = kwargs.pop(invoke_name)
+            self._edm_user = _edm_user or getattr(settings, 'MAIL_EDM_USER')
+        except AttributeError:
+            if fail_silently:
+                self.invoke_name = None
+                self._edm_user = None
+            else:
+                raise
+
         self.get_url = 'http://sendcloud.sohu.com/webapi/template.get.json'
         self.add_url = 'http://sendcloud.sohu.com/webapi/template.add.json'
         self.update_url = 'http://sendcloud.sohu.com/webapi/template.update.json'
         self.send_url = 'http://sendcloud.sohu.com/webapi/mail.send_template.json'
-
-        try:
-            self._edm_user = edm_user or getattr(settings, 'MAIL_EDM_USER')
-            self._api_key = api_key or getattr(settings, 'MAIL_APP_KEY')
-            self.invoke_name = invoke_name
-            assert invoke_name is not None
-        except AttributeError:
-            if fail_silently:
-                self._api_user, self._api_key = None, None
-            else:
-                raise
+        super(SendCloudTemplate, self).__init__(*args, **kwargs)
 
     @property
     def edm_user(self):
         return self._edm_user
-
-    @property
-    def api_key(self):
-        return self._api_key
 
     def get_or_create(self, **kwargs):
         if not self.get_status():
@@ -46,7 +41,7 @@ class SendCloudTemplate(object):
 
     def get_status(self):
         data = {
-            'api_user': self.edm_user,
+            'api_user': self.api_user,
             'api_key': self.api_key,
             'invoke_name': self.invoke_name
         }
@@ -65,7 +60,7 @@ class SendCloudTemplate(object):
 
     def add(self, name, html, subject, email_type=1):
         data = {
-            'api_user': self.edm_user,
+            'api_user': self.api_user,
             'api_key': self.api_key,
             'invoke_name': self.invoke_name,
             'name': name,
@@ -77,7 +72,7 @@ class SendCloudTemplate(object):
 
     def update(self, name, html, subject, email_type=1):
         data = {
-            'api_user': self.edm_user,
+            'api_user': self.api_user,
             'api_key': self.api_key,
             'invoke_name': self.invoke_name,
             'name': name,
@@ -89,7 +84,7 @@ class SendCloudTemplate(object):
 
     def send_to_list(self, subject, from_mail, from_name, to):
         data = {
-            'api_user': self.edm_user,
+            'api_user': self.api_user,
             'api_key': self.api_key,
             'use_maillist': 'true',
             'resp_email_id': 'true',
@@ -101,20 +96,3 @@ class SendCloudTemplate(object):
             "fromname": from_name,
         }
         return self.post_api(self.send_url, data)
-
-    def post_api(self, url, data):
-        try:
-            r = requests.post(url, data=data)
-        except Exception:
-            if not self.fail_silently:
-                raise
-            return False
-
-        res = r.json()
-
-        if 'errors' in res:
-            if not self.fail_silently:
-                raise SendCloudAPIError(res['errors'])
-            return False
-
-        return res
