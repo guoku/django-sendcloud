@@ -83,7 +83,7 @@ class SendCloudTemplate(APIBaseClass):
 
     def send_to_list(self, subject, from_mail, from_name, to):
         data = {
-            'api_user': self.api_user,
+            'api_user': self.edm_user,
             'api_key': self.api_key,
             'use_maillist': 'true',
             'resp_email_id': 'true',
