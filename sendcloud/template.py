@@ -9,12 +9,11 @@ class SendCloudTemplate(APIBaseClass):
 
     def __init__(self, invoke_name, fail_silently=False, *args, **kwargs):
         _edm_user = kwargs.pop('edm_user', None)
+        self.invoke_name = invoke_name
         try:
-            self.invoke_name = kwargs.pop('invoke_name', None)
             self._edm_user = _edm_user or getattr(settings, 'MAIL_EDM_USER')
         except AttributeError:
             if fail_silently:
-                self.invoke_name = None
                 self._edm_user = None
             else:
                 raise
