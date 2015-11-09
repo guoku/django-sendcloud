@@ -73,6 +73,8 @@ class SendCloudAddressList(APIBaseClass):
         }
         if name:
             data['name'] = name
+        if member_addr:
+            data['member_addr'] = member_addr
         if vars:
             data[vars] = vars
         return self.post_api(self.update_url, data)
