@@ -20,10 +20,12 @@ class SendCloudAddressList(APIBaseClass):
 
         self._member_addr = member_addr
         self.fail_silently = fail_silently
-        self.add_url = 'http://sendcloud.sohu.com/webapi/list_member.add.json'
-        self.update_url = 'http://sendcloud.sohu.com/webapi/list_member.update.json'
-        self.delete_url = 'http://sendcloud.sohu.com/webapi/list_member.delete.json'
-        self.get_url = 'http://sendcloud.sohu.com/webapi/list_member.get.json'
+        self.add_member_url = 'http://sendcloud.sohu.com/webapi/list_member.add.json'
+        self.update_member_url = 'http://sendcloud.sohu.com/webapi/list_member.update.json'
+        self.delete_member_url = 'http://sendcloud.sohu.com/webapi/list_member.delete.json'
+        self.get_member_url = 'http://sendcloud.sohu.com/webapi/list_member.get.json'
+        self.get_list_url = 'http://sendcloud.sohu.com/webapi/list.get.json'
+        self.create_list_url = 'http://sendcloud.sohu.com/webapi/list.create.json'
         super(SendCloudAddressList, self).__init__(*args, **kwargs)
 
     @property
@@ -33,6 +35,25 @@ class SendCloudAddressList(APIBaseClass):
     @property
     def member_addr(self):
         return self._member_addr
+
+    def create_list(self, list_name):
+        data = {
+            'api_user': self.api_user,
+            'api_key': self.api_key,
+            'mail_list_addr': list_name,
+            'member_addr': self.member_addr,
+        }
+        return self.post_api(self.create_list_url, data)
+
+    def get_list(self):
+        data = {
+            'api_user': self.api_user,
+            'api_key': self.api_key,
+            'mail_list_addr': self.mail_list_addr,
+            'member_addr': self.member_addr,
+        }
+        res = self.post_api(self.get_list_url, data)
+        return res
 
     def get_or_create(self, name):
         member = self.get()
@@ -47,10 +68,10 @@ class SendCloudAddressList(APIBaseClass):
             'mail_list_addr': self.mail_list_addr,
             'member_addr': self.member_addr,
         }
-        res = self.post_api(self.get_url, data)
+        res = self.post_api(self.get_member_url, data)
         if res['members']:
             return res
-        return res
+        return
 
     def add_member(self, name, vars='', upsert='false'):
         data = {
@@ -62,7 +83,7 @@ class SendCloudAddressList(APIBaseClass):
             'vars': vars,
             'upsert': upsert
         }
-        return self.post_api(self.add_url, data)
+        return self.post_api(self.add_member_url, data)
 
     def update_member(self, name='', member_addr='', mai_list_addr='', vars=''):
         data = {
@@ -77,7 +98,7 @@ class SendCloudAddressList(APIBaseClass):
             data['member_addr'] = member_addr
         if vars:
             data[vars] = vars
-        return self.post_api(self.update_url, data)
+        return self.post_api(self.update_member_url, data)
 
     def delete_member(self):
         data = {
@@ -86,4 +107,4 @@ class SendCloudAddressList(APIBaseClass):
             'mail_list_addr': self.mail_list_addr,
             'member_addr': self.member_addr,
         }
-        return self.post_api(self.delete_url, data)
+        return self.post_api(self.delete_member_url, data)

@@ -22,6 +22,7 @@ class SendCloudTemplate(APIBaseClass):
         self.add_url = 'http://sendcloud.sohu.com/webapi/template.add.json'
         self.update_url = 'http://sendcloud.sohu.com/webapi/template.update.json'
         self.send_url = 'http://sendcloud.sohu.com/webapi/mail.send_template.json'
+        self.delete_url = 'http://sendcloud.sohu.com/webapi/template.delete.json'
         super(SendCloudTemplate, self).__init__(*args, **kwargs)
 
     @property
@@ -80,6 +81,15 @@ class SendCloudTemplate(APIBaseClass):
             'email_type': email_type
         }
         return self.post_api(self.update_url, data)
+
+    def delete(self):
+        data = {
+            'api_user': self.api_user,
+            'api_key': self.api_key,
+            'invoke_name': self.invoke_name,
+        }
+        res = self.post_api(self.delete_url, data)
+        return res
 
     def send_to_list(self, subject, from_mail, from_name, to):
         data = {
