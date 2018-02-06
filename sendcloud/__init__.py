@@ -71,14 +71,14 @@ class SendCloudBackend(BaseEmailBackend):
         }
 
         params = {
-            "api_user": self.app_user,
-            "api_key": self.app_key,
-            "template_invoke_name": template,
-            "substitution_vars": json.dumps(sub_vars),
+            "apiUser": self.app_user,
+            "apiKey": self.app_key,
+            # "templateInvokeName": template,
+            "subject": json.dumps(sub_vars),
             "from": from_email,
-            "mail_from": from_email,
-            "fromname": from_name,
-            "resp_email_id": "true",
+            "fromName": from_name,
+            "html": "你太棒了！你已成功的从SendCloud发送了一封测试邮件，接下来快登录前台去完善账户信息吧！",
+            # "resp_email_id": "true",
         }
 
         try:
