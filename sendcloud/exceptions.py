@@ -1,0 +1,2 @@
+class SendCloudAPIError(Exception):
+    pass

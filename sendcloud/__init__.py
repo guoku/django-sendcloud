@@ -1,15 +1,14 @@
 import requests
-import json
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
+from sendcloud.exceptions import SendCloudAPIError
 
-# from io import StringIO
 send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
 
 
-class SendCloudAPIError(Exception):
-    pass
+# class SendCloudAPIError(Exception):
+#     pass
 
 
 class SendCloudBackend(BaseEmailBackend):
@@ -144,7 +143,6 @@ class APIBaseClass(object):
             return False
 
         res = r.json()
-
         if 'errors' in res:
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])

@@ -1,28 +1,35 @@
 from setuptools import setup, find_packages
-import os
-import platform
+# import os
+# import platform
 
 DESCRIPTION = "A Django email backend for SendCloud"
 
 LONG_DESCRIPTION = None
+
 try:
     LONG_DESCRIPTION = open('README.md').read()
 except:
-    pass
+    LONG_DESCRIPTION = "django send cloud"
 
 CLASSIFIERS = [
-    'Development Status :: 4 - Beta',
+    'Development Status :: 5 - Beta',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
     'Operating System :: OS Independent',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 3.6',
     'Topic :: Software Development :: Libraries :: Python Modules',
     'Framework :: Django',
 ]
 
+install_requires = [
+                    'Django >= 1.11',
+                    'requests >= 2.1',
+                   ],
+
 setup(
     name='django-sendcloud',
-    version='0.4',
+    version='0.5',
     packages=['sendcloud'],
     author='jiaxin',
     author_email='edison7500@gmail.com',
@@ -31,8 +38,7 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     platforms=['any'],
-    install_requires=['requests==2.6.0',
-                      'django==1.11'],
+    install_requires=install_requires,
     classifiers=CLASSIFIERS,
     zip_safe = False,
 )
