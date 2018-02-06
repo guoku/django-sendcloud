@@ -1,8 +1,10 @@
-# django-sendcloud
+## Django SendCloud
 send cloud django 插件
 
+> 本人已经离开果库。因此，本项目 fork 到我自己的 github 仓库进行维护。
 
-## OverView
+
+## Overview
 
 **Install** 
 
