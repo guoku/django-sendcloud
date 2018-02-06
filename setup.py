@@ -6,7 +6,7 @@ DESCRIPTION = "A Django email backend for SendCloud"
 
 LONG_DESCRIPTION = None
 try:
-    LONG_DESCRIPTION = open('README.rst').read()
+    LONG_DESCRIPTION = open('README.md').read()
 except:
     pass
 
@@ -25,13 +25,14 @@ setup(
     version='0.4',
     packages=['sendcloud'],
     author='jiaxin',
-    author_email='jiaxin@guoku.com',
-    url='http://github.com/guoku/django-sendcloud/',
+    author_email='edison7500@gmail.com',
+    url='https://github.com/edison7500/django-sendcloud',
     license='MIT',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     platforms=['any'],
-    install_requires=['requests==2.6.0', 'django==1.6.11'],
+    install_requires=['requests==2.6.0',
+                      'django==1.11'],
     classifiers=CLASSIFIERS,
     zip_safe = False,
 )

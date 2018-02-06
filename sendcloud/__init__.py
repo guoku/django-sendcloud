@@ -1,19 +1,11 @@
-# -*- encoding: utf8 -*-
-
 import requests
 import json
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
 
-
-try:
-    from io import StringIO
-except ImportError:
-    try:
-        from cStringIO import StringIO
-    except ImportError:
-        from StringIO import StringIO
+# from io import StringIO
+send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
 
 
 class SendCloudAPIError(Exception):
@@ -40,7 +32,8 @@ class SendCloudBackend(BaseEmailBackend):
             else:
                 raise
         # print self._app_key, self._app_user
-        self._api_url = "http://sendcloud.sohu.com/webapi/mail.send_template.json"
+        # self._api_url = "http://sendcloud.sohu.com/webapi/mail.send_template.json"
+        self._api_url = send_cloud_v2_send_api
 
     @property
     def app_user(self):
