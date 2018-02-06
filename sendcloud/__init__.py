@@ -55,41 +55,43 @@ class SendCloudBackend(BaseEmailBackend):
 
     def _send(self, email_message):
         """A helper method that does the actual sending."""
+        print (dir(email_message))
         if not email_message.recipients():
             return False
         from_email = sanitize_address(email_message.from_email,
                                       email_message.encoding)
-        from_name = sanitize_address(email_message.from_name,
-                                     email_message.encoding)
+        # from_name = sanitize_address(email_message.from_name,
+        #                              email_message.encoding)
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
 
-        template = email_message.template_invoke_name
-        sub_vars = {
-            'to': recipients,
-            'sub': email_message.sub_vars
-        }
+        # template = email_message.template_invoke_name
+        # sub_vars = {
+        #     'to': recipients,
+        #     'sub': email_message.sub_vars
+        # }
 
         params = {
             "apiUser": self.app_user,
             "apiKey": self.app_key,
             # "templateInvokeName": template,
-            "subject": json.dumps(sub_vars),
+            "subject": email_message.subject,
             "from": from_email,
-            "fromName": from_name,
-            "html": "你太棒了！你已成功的从SendCloud发送了一封测试邮件，接下来快登录前台去完善账户信息吧！",
-            # "resp_email_id": "true",
+            "to": recipients,
+            "html": email_message.body,
         }
 
-        try:
-            r = requests.post(self.api_url, data=params)
-        except Exception:
-            if not self.fail_silently:
-                raise
-            return False
+        r = requests.post(self.api_url, files={}, data=params)
+        print (r.json())
+        # try:
+        #     r = requests.post(self.api_url, data=params)
+        # except Exception:
+        #     if not self.fail_silently:
+        #         raise
+        #     return False
 
         res = r.json()
-        if res.has_key("errors"):
+        if "errors" in res:
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])
             return False
