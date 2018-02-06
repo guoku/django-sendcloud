@@ -81,13 +81,11 @@ class SendCloudBackend(BaseEmailBackend):
         }
 
         r = requests.post(self.api_url, files={}, data=params)
-        print (r.json())
-        # try:
-        #     r = requests.post(self.api_url, data=params)
-        # except Exception:
-        #     if not self.fail_silently:
-        #         raise
-        #     return False
+
+        if r.status_code != 200:
+            if not self.fail_silently:
+                raise SendCloudAPIError(r.text)
+            return False
 
         res = r.json()
         if "errors" in res:
