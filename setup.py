@@ -4,7 +4,6 @@ DESCRIPTION = "A Django email backend for SendCloud"
 
 LONG_DESCRIPTION = None
 
-
 version = '0.5.1'
 
 try:
@@ -24,10 +23,6 @@ CLASSIFIERS = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
-install_requires = [
-                    'requests >= 2.1',
-                   ],
-
 setup(
     name='django-sendcloud',
     version=version,
@@ -39,9 +34,9 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     platforms=['any'],
-    install_requires=install_requires,
+    install_requires=['requests >= 2.1'],
     classifiers=CLASSIFIERS,
-    zip_safe = False,
+    zip_safe=False,
 )
 
 __author__ = 'edison7500'
