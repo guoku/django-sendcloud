@@ -7,10 +7,6 @@ from sendcloud.exceptions import SendCloudAPIError
 send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
 
 
-# class SendCloudAPIError(Exception):
-#     pass
-
-
 class SendCloudBackend(BaseEmailBackend):
     """
         A Django Email backend that uses send cloud.
@@ -64,12 +60,6 @@ class SendCloudBackend(BaseEmailBackend):
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
 
-        # template = email_message.template_invoke_name
-        # sub_vars = {
-        #     'to': recipients,
-        #     'sub': email_message.sub_vars
-        # }
-
         params = {
             "apiUser": self.app_user,
             "apiKey": self.app_key,
@@ -88,12 +78,10 @@ class SendCloudBackend(BaseEmailBackend):
             return False
 
         res = r.json()
-        print (res)
         if "errors" in res:
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])
             return False
-
         return True
 
     def send_messages(self, email_messages):
