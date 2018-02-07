@@ -88,6 +88,7 @@ class SendCloudBackend(BaseEmailBackend):
             return False
 
         res = r.json()
+        print (res)
         if "errors" in res:
             if not self.fail_silently:
                 raise SendCloudAPIError(res['errors'])
