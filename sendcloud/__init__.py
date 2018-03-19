@@ -105,7 +105,7 @@ class APIBaseClass(object):
                              kwargs.pop('app_key', None))
         self.fail_silently = fail_silently
         try:
-            self._api_user = api_key or getattr(settings, 'MAIL_APP_USER')
+            self._api_user = api_user or getattr(settings, 'MAIL_APP_USER')
             self._api_key = api_key or getattr(settings, 'MAIL_APP_KEY')
         except AttributeError:
             if fail_silently:
