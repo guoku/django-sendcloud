@@ -81,6 +81,7 @@ class SendCloudBackend(BaseEmailBackend):
 
         res = r.json()
         if not res['result']:
+            logger.info(res['message'])
             raise SendCloudAPIError(res['message'])
         return True
 
@@ -130,12 +131,9 @@ class APIBaseClass(object):
             return False
 
         res = r.json()
-        if 'errors' in res:
-            if not self.fail_silently:
-                raise SendCloudAPIError(res['errors'])
-            return False
-
-        return res
+        if not res['result']:
+            raise SendCloudAPIError(res['message'])
+        return True
 
 
 __author__ = 'edison7500'
