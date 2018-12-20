@@ -1,10 +1,14 @@
 import requests
+import logging
+
 from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
 from sendcloud.exceptions import SendCloudAPIError
 
 send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
+
+logger = logging.getLogger("sendcloud")
 
 
 class SendCloudBackend(BaseEmailBackend):
@@ -26,8 +30,6 @@ class SendCloudBackend(BaseEmailBackend):
                 self._app_user, self._app_key = None, None
             else:
                 raise
-        # print self._app_key, self._app_user
-        # self._api_url = "http://sendcloud.sohu.com/webapi/mail.send_template.json"
         self._api_url = send_cloud_v2_send_api
 
     @property
@@ -78,10 +80,8 @@ class SendCloudBackend(BaseEmailBackend):
             return False
 
         res = r.json()
-        if "errors" in res:
-            if not self.fail_silently:
-                raise SendCloudAPIError(res['errors'])
-            return False
+        if not res['result']:
+            raise SendCloudAPIError(res['message'])
         return True
 
     def send_messages(self, email_messages):
