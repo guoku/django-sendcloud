@@ -50,7 +50,7 @@ class SendCloudBackend(BaseEmailBackend):
 
     def _send(self, email_message):
         """A helper method that does the actual sending."""
-        print (dir(email_message))
+        # print (dir(email_message))
         if not email_message.recipients():
             return False
         from_email = sanitize_address(email_message.from_email,
