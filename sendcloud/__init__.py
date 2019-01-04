@@ -1,12 +1,15 @@
+__version__ = '0.5.1'
+
 import requests
 import logging
 
-from django.conf import settings
+# from django.conf import settings
+from .settings import send_cloud_config
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
 from sendcloud.exceptions import SendCloudAPIError
 
-send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
+# send_cloud_v2_send_api = "http://api.sendcloud.net/apiv2/mail/send"
 
 logger = logging.getLogger("sendcloud")
 
@@ -23,14 +26,14 @@ class SendCloudBackend(BaseEmailBackend):
         super(SendCloudBackend, self).__init__(fail_silently=fail_silently,
                                                *args, **kwargs)
         try:
-            self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
-            self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
-        except AttributeError:
+            self._app_user = app_user or send_cloud_config.get('app_user')
+            self._app_key = app_key or send_cloud_config.get('app_key')
+        except KeyError:
             if fail_silently:
                 self._app_user, self._app_key = None, None
             else:
                 raise
-        self._api_url = send_cloud_v2_send_api
+        # self._api_url =
 
     @property
     def app_user(self):
@@ -42,7 +45,8 @@ class SendCloudBackend(BaseEmailBackend):
 
     @property
     def api_url(self):
-        return self._api_url
+        _api_url = send_cloud_config.get('send_mail')
+        return _api_url
 
     def open(self):
         pass
@@ -125,7 +129,8 @@ class APIBaseClass(object):
     def post_api(self, url, data):
         try:
             r = requests.post(url, data=data)
-        except Exception:
+        except Exception as e:
+            logger.info(e)
             if not self.fail_silently:
                 raise
             return False
