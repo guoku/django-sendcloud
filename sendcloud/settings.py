@@ -2,8 +2,8 @@
 BASE_URL = "http://api.sendcloud.net/apiv2"
 
 SEND_CLOUD = {
-    "send_mail": "{base_url}/mail/send",
-    "sendtemplate": "{base_url}/mail/sendtemplate",
+    "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
+    "sendtemplate": "{base_url}/mail/sendtemplate".format(base_url=BASE_URL),
 }
 
 send_cloud_config = SEND_CLOUD.copy()
