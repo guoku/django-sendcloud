@@ -117,6 +117,7 @@ class APIBaseClass(object):
                 self._api_user, self._api_key = None, None
             else:
                 raise
+        logger.info(self._api_key, self._api_user)
 
     @property
     def api_user(self):
@@ -127,13 +128,10 @@ class APIBaseClass(object):
         return self._api_key
 
     def post_api(self, url, data):
-        try:
-            r = requests.post(url, data=data)
-            logger.info(r.json())
-        except Exception as e:
-            logger.error(e)
+        r = requests.post(url, data=data)
+        if r.status_code != 200:
             if not self.fail_silently:
-                raise
+                raise SendCloudAPIError(r.text)
             return False
 
         res = r.json()
