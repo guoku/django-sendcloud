@@ -129,7 +129,8 @@ class APIBaseClass(object):
     def post_api(self, url, data):
         try:
             r = requests.post(url, data=data)
-        except Exception:
+        except Exception as e:
+            logger.error(e)
             if not self.fail_silently:
                 raise
             return False
