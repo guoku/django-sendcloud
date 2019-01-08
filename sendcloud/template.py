@@ -1,5 +1,8 @@
 from django.conf import settings
 from sendcloud import APIBaseClass
+from .conf import (
+    get_template
+)
 
 send_cloud_v2_template_api = {
     "template_send": "http://api.sendcloud.net/apiv2/mail/sendtemplate",
@@ -23,7 +26,7 @@ class SendCloudTemplate(APIBaseClass):
             else:
                 raise
 
-        self.get_url = 'http://sendcloud.sohu.com/webapi/template.get.json'
+        self.get_url = get_template()
         self.add_url = 'http://sendcloud.sohu.com/webapi/template.add.json'
         self.update_url = 'http://sendcloud.sohu.com/webapi/template.update.json'
         self.send_url = 'http://sendcloud.sohu.com/webapi/mail.send_template.json'

@@ -1,4 +1,4 @@
-__version__ = '0.5.1'
+__version__ = '0.5.2'
 
 import requests
 import logging
@@ -129,6 +129,7 @@ class APIBaseClass(object):
     def post_api(self, url, data):
         try:
             r = requests.post(url, data=data)
+            logger.info(r.json())
         except Exception as e:
             logger.error(e)
             if not self.fail_silently:
