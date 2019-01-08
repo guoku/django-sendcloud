@@ -1,5 +1,6 @@
 from django.conf import settings
 from sendcloud import APIBaseClass
+from .exceptions import SendCloudAPIError
 from .conf import (
     get_template_send,
     get_template,
@@ -60,15 +61,17 @@ class SendCloudTemplate(APIBaseClass):
 
         res = self.post_api(self.get_url, data)
 
-        if len(res['templateList']) == 0:
-            return False
-        try:
-            template_info = res['templateList'][0]
-            return template_info['is_verify']
-        except Exception:
-            if not self.fail_silently:
-                raise
-            return False
+        if res['statusCode'] == 40216:
+            return res['result']
+        else:
+            return res['result']
+        # try:
+        #     template_info = res['templateList'][0]
+        #     return template_info['is_verify']
+        # except Exception:
+        #     if not self.fail_silently:
+        #         raise
+        #     return False
 
     def add(self, name, html, subject, email_type=1):
         data = {

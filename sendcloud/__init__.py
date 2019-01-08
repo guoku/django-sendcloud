@@ -136,8 +136,8 @@ class APIBaseClass(object):
 
         res = r.json()
         if not res['result']:
-            raise SendCloudAPIError(res['message'])
-        return True
+            logger.info(res['message'])
+        return res
 
 
 __author__ = 'edison7500'
