@@ -1,7 +1,10 @@
 from django.conf import settings
 from sendcloud import APIBaseClass
 from .conf import (
-    get_template
+    get_template,
+    add_template,
+    delete_template,
+    update_template,
 )
 
 send_cloud_v2_template_api = {
@@ -27,10 +30,10 @@ class SendCloudTemplate(APIBaseClass):
                 raise
 
         self.get_url = get_template()
-        self.add_url = 'http://sendcloud.sohu.com/webapi/template.add.json'
-        self.update_url = 'http://sendcloud.sohu.com/webapi/template.update.json'
+        self.add_url = add_template()
+        self.update_url = update_template()
         self.send_url = 'http://sendcloud.sohu.com/webapi/mail.send_template.json'
-        self.delete_url = 'http://sendcloud.sohu.com/webapi/template.delete.json'
+        self.delete_url = delete_template()
         super(SendCloudTemplate, self).__init__(*args, **kwargs)
 
     @property
