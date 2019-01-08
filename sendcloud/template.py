@@ -53,9 +53,9 @@ class SendCloudTemplate(APIBaseClass):
 
     def get_status(self):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'invoke_name': self.invoke_name
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'invokeName': self.invoke_name
         }
 
         res = self.post_api(self.get_url, data)
@@ -72,48 +72,48 @@ class SendCloudTemplate(APIBaseClass):
 
     def add(self, name, html, subject, email_type=1):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'invoke_name': self.invoke_name,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'invokeName': self.invoke_name,
             'name': name,
             'html': html,
             'subject': subject,
-            'email_type': email_type
+            'templateType': email_type
         }
         return self.post_api(self.add_url, data)
 
     def update(self, name, html, subject, email_type=1):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'invoke_name': self.invoke_name,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'invokeName': self.invoke_name,
             'name': name,
             'html': html,
             'subject': subject,
-            'email_type': email_type
+            'templateType': email_type
         }
         return self.post_api(self.update_url, data)
 
     def delete(self):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'invoke_name': self.invoke_name,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'invokeName': self.invoke_name,
         }
         res = self.post_api(self.delete_url, data)
         return res
 
     def send_to_list(self, subject, from_mail, from_name, to):
         data = {
-            'api_user': self.edm_user,
-            'api_key': self.api_key,
-            'use_maillist': 'true',
+            'apiUser': self.edm_user,
+            'apiKey': self.api_key,
+            'useAddressList': 'true',
             'resp_email_id': 'true',
-            'template_invoke_name': self.invoke_name,
+            'templateInvokeName': self.invoke_name,
             'subject': subject,
             'to': to,
             "from": from_mail,
-            "mail_from": from_mail,
-            "fromname": from_name,
+            # "mail_from": from_mail,
+            "fromName": from_name,
         }
         return self.post_api(self.send_url, data)
