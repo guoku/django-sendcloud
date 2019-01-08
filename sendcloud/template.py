@@ -7,14 +7,14 @@ from .conf import (
     delete_template,
     update_template,
 )
-
-send_cloud_v2_template_api = {
-    "template_send": "http://api.sendcloud.net/apiv2/mail/sendtemplate",
-    "template_get": "http://api.sendcloud.net/apiv2/template/get",
-    "template_add": "http://api.sendcloud.net/apiv2/template/add",
-    "template_delete": "http://api.sendcloud.net/apiv2/template/delete",
-    "template_update": "http://api.sendcloud.net/apiv2/template/update",
-}
+#
+# send_cloud_v2_template_api = {
+#     "template_send": "http://api.sendcloud.net/apiv2/mail/sendtemplate",
+#     "template_get": "http://api.sendcloud.net/apiv2/template/get",
+#     "template_add": "http://api.sendcloud.net/apiv2/template/add",
+#     "template_delete": "http://api.sendcloud.net/apiv2/template/delete",
+#     "template_update": "http://api.sendcloud.net/apiv2/template/update",
+# }
 
 
 class SendCloudTemplate(APIBaseClass):
