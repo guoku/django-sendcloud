@@ -83,7 +83,7 @@ class SendCloudAddressList(APIBaseClass):
             return res
         return
 
-    def add_member(self, vars={}):
+    def add_member(self, names=None, vars={}):
         data = {
             'apiUser': self.api_user,
             'apiKey': self.api_key,
@@ -91,7 +91,10 @@ class SendCloudAddressList(APIBaseClass):
             'members': self.member_addr,
             # 'vars': vars,
         }
-        # if vars:
+        if names:
+            data.update({
+                "names": names
+            })
         return self.post_api(self.add_member_url, data)
 
     def update_member(self, name='', member_addr='', mai_list_addr='', vars=''):
