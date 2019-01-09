@@ -1,6 +1,13 @@
 from django.conf import settings
 from sendcloud import APIBaseClass
 
+from .conf import (
+    member_update,
+    member_get,
+    member_add,
+    member_delete,
+)
+
 
 class SendCloudAddressList(APIBaseClass):
     def __init__(self, fail_silently=False, *args, **kwargs):
@@ -17,12 +24,18 @@ class SendCloudAddressList(APIBaseClass):
 
         self._member_addr = member_addr
         self.fail_silently = fail_silently
-        self.add_member_url = 'http://sendcloud.sohu.com/webapi/list_member.add.json'
-        self.update_member_url = 'http://sendcloud.sohu.com/webapi/list_member.update.json'
-        self.delete_member_url = 'http://sendcloud.sohu.com/webapi/list_member.delete.json'
-        self.get_member_url = 'http://sendcloud.sohu.com/webapi/list_member.get.json'
+        # self.add_member_url = 'http://sendcloud.sohu.com/webapi/list_member.add.json'
+        # self.update_member_url = 'http://sendcloud.sohu.com/webapi/list_member.update.json'
+        # self.delete_member_url = 'http://sendcloud.sohu.com/webapi/list_member.delete.json'
+        # self.get_member_url = 'http://sendcloud.sohu.com/webapi/list_member.get.json'
         self.get_list_url = 'http://sendcloud.sohu.com/webapi/list.get.json'
         self.create_list_url = 'http://sendcloud.sohu.com/webapi/list.create.json'
+
+        self.add_member_url = member_add()
+        self.update_member_url = member_update()
+        self.delete_member_url = member_delete()
+        self.get_member_url = member_get()
+
         super(SendCloudAddressList, self).__init__(*args, **kwargs)
 
     @property
@@ -70,38 +83,38 @@ class SendCloudAddressList(APIBaseClass):
             return res
         return
 
-    def add_member(self, name, vars='', upsert='false'):
+    def add_member(self, name, vars=''):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'mail_list_addr': self.mail_list_addr,
-            'member_addr': self.member_addr,
-            'name': name,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'address': self.mail_list_addr,
+            'members': self.member_addr,
+            'names': name,
             'vars': vars,
-            'upsert': upsert
+            # 'upsert': upsert
         }
         return self.post_api(self.add_member_url, data)
 
     def update_member(self, name='', member_addr='', mai_list_addr='', vars=''):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'mail_list_addr': mai_list_addr or self.mail_list_addr,
-            'member_addr': member_addr or self.member_addr,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'address': mai_list_addr or self.mail_list_addr,
+            'members': member_addr or self.member_addr,
         }
         if name:
-            data['name'] = name
-        if member_addr:
-            data['member_addr'] = member_addr
+            data['names'] = name
+        # if member_addr:
+        #     data['member_addr'] = member_addr
         if vars:
             data[vars] = vars
         return self.post_api(self.update_member_url, data)
 
     def delete_member(self):
         data = {
-            'api_user': self.api_user,
-            'api_key': self.api_key,
-            'mail_list_addr': self.mail_list_addr,
-            'member_addr': self.member_addr,
+            'apiUser': self.api_user,
+            'apiKey': self.api_key,
+            'address': self.mail_list_addr,
+            'members': self.member_addr,
         }
         return self.post_api(self.delete_member_url, data)
