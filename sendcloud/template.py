@@ -111,7 +111,7 @@ class SendCloudTemplate(APIBaseClass):
             'apiUser': self.edm_user,
             'apiKey': self.api_key,
             'useAddressList': 'true',
-            'resp_email_id': 'true',
+            'respEmailId': 'true',
             'templateInvokeName': self.invoke_name,
             'subject': subject,
             'to': to,
