@@ -88,7 +88,7 @@ class SendCloudAddressList(APIBaseClass):
         logger.info(res)
         # if res['members']:
         #     return res
-        return []
+        return res
 
     def add_member(self, names=None, vars={}):
         data = {
