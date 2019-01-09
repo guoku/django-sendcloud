@@ -8,6 +8,11 @@ SEND_CLOUD = {
     "mail_template_add": "{base_url}/template/add".format(base_url=BASE_URL),
     "mail_template_delete": "{base_url}/template/delete".format(base_url=BASE_URL),
     "mail_template_update": "{base_url}/template/update".format(base_url=BASE_URL),
+
+
+    "user_list": "{base_url}/apiuser/list".format(base_url=BASE_URL),
+    "user_add": "{base_url}/apiuser/add".format(base_url=BASE_URL),
+
 }
 
 send_cloud_config = SEND_CLOUD.copy()
