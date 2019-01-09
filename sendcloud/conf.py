@@ -9,6 +9,7 @@ SEND_CLOUD = {
     "mail_template_delete": "{base_url}/template/delete".format(base_url=BASE_URL),
     "mail_template_update": "{base_url}/template/update".format(base_url=BASE_URL),
 
+    "member_list": "{base_url}/addressmember/list".format(base_url=BASE_URL),
     "member_get": "{base_url}/addressmember/get".format(base_url=BASE_URL),
     "member_add": "{base_url}/addressmember/add".format(base_url=BASE_URL),
     "member_update": "{base_url}/addressmember/update".format(base_url=BASE_URL),
@@ -49,6 +50,10 @@ def delete_template():
 
 def update_template():
     return get_send_cloud_setting("mail_template_update")
+
+
+def member_list():
+    return get_send_cloud_setting("member_list")
 
 
 def member_get():

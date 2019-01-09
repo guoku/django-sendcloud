@@ -3,6 +3,7 @@ from django.conf import settings
 from sendcloud import APIBaseClass
 
 from .conf import (
+    member_list,
     member_update,
     member_get,
     member_add,
@@ -34,6 +35,7 @@ class SendCloudAddressList(APIBaseClass):
         self.get_list_url = 'http://sendcloud.sohu.com/webapi/list.get.json'
         self.create_list_url = 'http://sendcloud.sohu.com/webapi/list.create.json'
 
+        self.get_list_url = member_list()
         self.add_member_url = member_add()
         self.update_member_url = member_update()
         self.delete_member_url = member_delete()
