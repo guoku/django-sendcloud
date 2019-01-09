@@ -65,9 +65,10 @@ class SendCloudAddressList(APIBaseClass):
             'apiUser': self.api_user,
             'apiKey': self.api_key,
             'address': self.mail_list_addr,
-            'members': self.member_addr,
+            # 'members': self.member_addr,
         }
         res = self.post_api(self.get_list_url, data)
+        logger.info(res)
         return res
 
     def get_or_create(self, name):
