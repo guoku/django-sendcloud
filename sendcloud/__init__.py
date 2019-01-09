@@ -117,7 +117,9 @@ class APIBaseClass(object):
                 self._api_user, self._api_key = None, None
             else:
                 raise
-        logger.info(self._api_key, self._api_user)
+        logger.info(
+            "{} {}".format(self._api_key, self._api_user)
+        )
 
     @property
     def api_user(self):
