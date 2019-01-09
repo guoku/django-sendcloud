@@ -129,6 +129,13 @@ class APIBaseClass(object):
     def api_key(self):
         return self._api_key
 
+    @property
+    def payload(self):
+        return {
+            "apiUser": self.api_user,
+            "apiKey": self.api_key,
+        }
+
     def post_api(self, url, data):
         r = requests.post(url, data=data)
         if r.status_code != 200:

@@ -1,3 +1,4 @@
+import logging
 from django.conf import settings
 from sendcloud import APIBaseClass
 
@@ -7,6 +8,8 @@ from .conf import (
     member_add,
     member_delete,
 )
+
+logger = logging.getLogger('sendcloud')
 
 
 class SendCloudAddressList(APIBaseClass):
@@ -79,9 +82,10 @@ class SendCloudAddressList(APIBaseClass):
             'members': self.member_addr,
         }
         res = self.post_api(self.get_member_url, data)
-        if res['members']:
-            return res
-        return
+        logger.info(res)
+        # if res['members']:
+        #     return res
+        return []
 
     def add_member(self, names=None, vars={}):
         data = {
