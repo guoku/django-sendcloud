@@ -32,7 +32,7 @@ class SendCloudAddressList(APIBaseClass):
         # self.update_member_url = 'http://sendcloud.sohu.com/webapi/list_member.update.json'
         # self.delete_member_url = 'http://sendcloud.sohu.com/webapi/list_member.delete.json'
         # self.get_member_url = 'http://sendcloud.sohu.com/webapi/list_member.get.json'
-        self.get_list_url = 'http://sendcloud.sohu.com/webapi/list.get.json'
+        # self.get_list_url = 'http://sendcloud.sohu.com/webapi/list.get.json'
         self.create_list_url = 'http://sendcloud.sohu.com/webapi/list.create.json'
 
         self.get_list_url = member_list()
