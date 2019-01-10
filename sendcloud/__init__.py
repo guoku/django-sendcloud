@@ -1,4 +1,4 @@
-__version__ = '0.5.3'
+__version__ = '0.5.5'
 
 import requests
 import logging
@@ -117,7 +117,9 @@ class APIBaseClass(object):
                 self._api_user, self._api_key = None, None
             else:
                 raise
-        logger.info(self._api_key, self._api_user)
+        logger.info(
+            "{} {}".format(self._api_key, self._api_user)
+        )
 
     @property
     def api_user(self):
@@ -126,6 +128,13 @@ class APIBaseClass(object):
     @property
     def api_key(self):
         return self._api_key
+
+    @property
+    def payload(self):
+        return {
+            "apiUser": self.api_user,
+            "apiKey": self.api_key,
+        }
 
     def post_api(self, url, data):
         r = requests.post(url, data=data)
@@ -136,7 +145,8 @@ class APIBaseClass(object):
 
         res = r.json()
         if not res['result']:
-            logger.info(res['message'])
+            logger.error(res['message'])
+            raise SendCloudAPIError(res['message'])
         return res
 
 
