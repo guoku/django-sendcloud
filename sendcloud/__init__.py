@@ -145,7 +145,8 @@ class APIBaseClass(object):
 
         res = r.json()
         if not res['result']:
-            logger.info(res['message'])
+            logger.error(res['message'])
+            raise SendCloudAPIError(res['message'])
         return res
 
 
