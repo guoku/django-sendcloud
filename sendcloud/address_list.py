@@ -87,7 +87,7 @@ class SendCloudAddressList(APIBaseClass):
         }
         res = self.post_api(self.get_member_url, data)
         logger.info(res)
-        return res["info"]
+        return res
 
     def add_member(self, names=None, vars={}):
         data = {
