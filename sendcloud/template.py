@@ -59,19 +59,15 @@ class SendCloudTemplate(APIBaseClass):
             'invokeName': self.invoke_name
         }
 
-        res = self.post_api(self.get_url, data)
-
-        if res['statusCode'] == 40216:
-            return res['result']
-        else:
-            return res['result']
-        # try:
-        #     template_info = res['templateList'][0]
-        #     return template_info['is_verify']
-        # except Exception:
-        #     if not self.fail_silently:
-        #         raise
-        #     return False
+        try:
+            res = self.post_api(self.get_url, data)
+            return True
+        except SendCloudAPIError as e:
+            return False
+        # if res['statusCode'] == 40216:
+        #     return res['result']
+        # else:
+        #     return res['result']
 
     def add(self, name, html, subject, email_type=1):
         data = {
