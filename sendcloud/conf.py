@@ -54,10 +54,13 @@ SEND_CLOUD_DEFAULTS = {
 
 send_cloud_config = SEND_CLOUD_DEFAULTS.copy()
 
-send_cloud_config.update(getattr(settings, "SEND_CLOUD_KEY", {}))
-
 
 def get_send_cloud_setting(sc_config):
+
+    send_cloud_config.update(
+        getattr(settings, "SEND_CLOUD_KEY", {})
+    )
+
     return send_cloud_config.get(sc_config)
 
 
