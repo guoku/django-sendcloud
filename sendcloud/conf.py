@@ -27,11 +27,11 @@ SEND_CLOUD = {
         "delete": "{base_url}/addressmember/delete".format(base_url=BASE_URL),
     },
 
-    "mail_template_list": "{base_url}/template/list".format(base_url=BASE_URL),
-    "mail_template_get": "{base_url}/template/get".format(base_url=BASE_URL),
-    "mail_template_add": "{base_url}/template/add".format(base_url=BASE_URL),
-    "mail_template_delete": "{base_url}/template/delete".format(base_url=BASE_URL),
-    "mail_template_update": "{base_url}/template/update".format(base_url=BASE_URL),
+    # "mail_template_list": "{base_url}/template/list".format(base_url=BASE_URL),
+    # "mail_template_get": "{base_url}/template/get".format(base_url=BASE_URL),
+    # "mail_template_add": "{base_url}/template/add".format(base_url=BASE_URL),
+    # "mail_template_delete": "{base_url}/template/delete".format(base_url=BASE_URL),
+    # "mail_template_update": "{base_url}/template/update".format(base_url=BASE_URL),
 
     "member_list": "{base_url}/addressmember/list".format(base_url=BASE_URL),
     "member_get": "{base_url}/addressmember/get".format(base_url=BASE_URL),
@@ -48,6 +48,7 @@ def get_send_cloud_setting(settings):
     return send_cloud_config.get(settings)
 
 
+# ----------------------------------------------------------------------------------------------------------------------
 def get_mail_config(kind="send_mail"):
     _mail = get_send_cloud_setting("mail")
     return _mail.get(kind)
@@ -94,25 +95,36 @@ def delete_template():
 def update_template():
     return get_template_config("update")
 
+
 # ----------------------------------------------------------------------------------------------------------------------
+def get_member_config(kind="list"):
+    _member = get_send_cloud_setting("member")
+    return _member.get(kind)
+
+
 def member_list():
-    return get_send_cloud_setting("member_list")
+    return get_member_config()
+    # return get_send_cloud_setting("member_list")
 
 
 def member_get():
-    return get_send_cloud_setting("member_get")
+    return get_member_config(kind='get')
+    # return get_send_cloud_setting("member_get")
 
 
 def member_add():
-    return get_send_cloud_setting("member_add")
+    return get_member_config(kind='add')
+    # return get_send_cloud_setting("member_add")
 
 
 def member_update():
-    return get_send_cloud_setting("member_update")
+    return get_member_config(kind='update')
+    # return get_send_cloud_setting("member_update")
 
 
 def member_delete():
-    return get_send_cloud_setting("member_delete")
+    return get_member_config(kind='delete')
+    # return get_send_cloud_setting("member_delete")
 
 
 if __name__ == "__main__":
