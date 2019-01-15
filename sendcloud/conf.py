@@ -1,8 +1,19 @@
-BASE_URL = "http://api.sendcloud.net/apiv2"
+from django.conf import settings
 
-SEND_CLOUD = {
+BASE_URL = 'http://api.sendcloud.net/apiv2'
+
+SEND_CLOUD_DEFAULTS = {
     # "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
     # "mail_template_send": "{base_url}/mail/sendtemplate".format(base_url=BASE_URL),
+
+    "spark_key": {
+        "APP_USER": "fake_user",
+        "APP_KEY": "fake_key",
+    },
+    "batch_key": {
+        "APP_USER": "fake_user",
+        "APP_KEY": "fake_key",
+    },
 
     "mail": {
         "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
@@ -41,11 +52,33 @@ SEND_CLOUD = {
 
 }
 
-send_cloud_config = SEND_CLOUD.copy()
+send_cloud_config = SEND_CLOUD_DEFAULTS.copy()
+
+send_cloud_config.update(getattr(settings, "SEND_CLOUD_KEY", {}))
 
 
-def get_send_cloud_setting(settings):
-    return send_cloud_config.get(settings)
+def get_send_cloud_setting(sc_config):
+    return send_cloud_config.get(sc_config)
+
+
+def get_send_cloud_spark_user():
+    _spark = get_send_cloud_setting('spark_key')
+    return _spark.get('APP_USER')
+
+
+def get_send_cloud_spark_key():
+    _spark = get_send_cloud_setting('spark_key')
+    return _spark.get('APP_KEY')
+
+
+def get_send_cloud_batch_user():
+    _batch = get_send_cloud_setting('batch_key')
+    return _batch.get('APP_USER')
+
+
+def get_send_cloud_batch_key():
+    _batch = get_send_cloud_setting('batch_key')
+    return _batch.get('APP_KEY')
 
 
 # ----------------------------------------------------------------------------------------------------------------------

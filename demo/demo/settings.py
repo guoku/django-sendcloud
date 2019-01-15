@@ -1,6 +1,6 @@
 import environ
 
-ROOT_DIR = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
+ROOT_DIR = environ.Path(__file__) - 2  # three folder back (/a/b/c/ - 3 = /)
 env = environ.Env()
 env.read_env(str(ROOT_DIR.path('.env')))
 
@@ -10,7 +10,9 @@ SECRET_KEY = env('SECRET_KEY', default='xxxxxxxxxx')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG', default=True)  # False if not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*",
+]
 
 # Application definition
 
@@ -52,7 +54,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'demo.wsgi.application'
-
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -99,15 +100,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # mail config
-EMAIL_BACKEND = 'sendcloud.SendCloudBackend'
+EMAIL_BACKEND = 'sendcloud.backend.SendCloudBackend'
 
-SEND_CLOUD = {
-    "mail": {
+SEND_CLOUD_KEY = {
+    "spark_key": {
         "APP_USER": env('SEND_CLOUD_APP_USER'),
         "APP_KEY": env('SEND_CLOUD_APP_KEY'),
     },
-    "edm": {
+    "batch_key": {
         "APP_USER": env("SEND_CLOUD_EDM_USER"),
         "APP_KEY": env("SEND_CLOUD_EDM_KEY"),
     }
 }
+
