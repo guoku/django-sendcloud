@@ -38,18 +38,6 @@ SEND_CLOUD_DEFAULTS = {
         "delete": "{base_url}/addressmember/delete".format(base_url=BASE_URL),
     },
 
-    # "mail_template_list": "{base_url}/template/list".format(base_url=BASE_URL),
-    # "mail_template_get": "{base_url}/template/get".format(base_url=BASE_URL),
-    # "mail_template_add": "{base_url}/template/add".format(base_url=BASE_URL),
-    # "mail_template_delete": "{base_url}/template/delete".format(base_url=BASE_URL),
-    # "mail_template_update": "{base_url}/template/update".format(base_url=BASE_URL),
-
-    # "member_list": "{base_url}/addressmember/list".format(base_url=BASE_URL),
-    # "member_get": "{base_url}/addressmember/get".format(base_url=BASE_URL),
-    # "member_add": "{base_url}/addressmember/add".format(base_url=BASE_URL),
-    # "member_update": "{base_url}/addressmember/update".format(base_url=BASE_URL),
-    # "member_delete": "{base_url}/addressmember/delete".format(base_url=BASE_URL),
-
 }
 
 send_cloud_config = SEND_CLOUD_DEFAULTS.copy()
