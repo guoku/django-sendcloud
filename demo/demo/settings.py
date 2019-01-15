@@ -101,6 +101,7 @@ STATIC_URL = '/static/'
 
 # mail config
 EMAIL_BACKEND = 'sendcloud.backend.SendCloudBackend'
+DEFAULT_FROM_EMAIL = "noreply@example.com"
 
 SEND_CLOUD_KEY = {
     "spark_key": {
@@ -110,6 +111,62 @@ SEND_CLOUD_KEY = {
     "batch_key": {
         "APP_USER": env("SEND_CLOUD_EDM_USER"),
         "APP_KEY": env("SEND_CLOUD_EDM_KEY"),
+    }
+}
+
+##
+# logging
+##
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+            # 'format': '[%(asctime)s.%(msecs)d] %(levelname)s [%(module)s:%(funcName)s:%(lineno)d]- %(message)s',
+        },
+        'error': {
+            'format': '[%(asctime)s.%(msecs)d] [%(module)s:%(funcName)s:%(lineno)d]- %(message)s',
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        # 'elasticapm': {
+        #     'level': 'ERROR',
+        #     'class': 'elasticapm.contrib.django.handlers.LoggingHandler',
+        # },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'formatter': 'error',
+            'filename': '/tmp/django.log',
+            'mode': 'a',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'sendcloud': {
+            'handlers': ['file', 'console'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.request': {
+            'handlers': ['file', ],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     }
 }
 

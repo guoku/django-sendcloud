@@ -33,11 +33,15 @@ class SendCloudBackend(BaseEmailBackend):
 
     @property
     def app_user(self):
-        return get_send_cloud_spark_user()
+        _app_user = get_send_cloud_spark_user()
+        logger.info(_app_user)
+        return _app_user
 
     @property
     def app_key(self):
-        return get_send_cloud_spark_key()
+        _app_key = get_send_cloud_spark_key()
+        logger.info(_app_key)
+        return _app_key
 
     @property
     def api_url(self):

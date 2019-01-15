@@ -25,9 +25,20 @@ python setup.py install
 
 ```.python
 
-EMAIL_BACKEND = 'sendcloud.SendCloudBackend'
-MAIL_APP_USER = '***' # 使用api_user 和 api_key 进行验证    
-MAIL_APP_KEY = '***'
+# mail config
+EMAIL_BACKEND = 'sendcloud.backend.SendCloudBackend'
+DEFAULT_FROM_EMAIL = "noreply@example.com"
+
+SEND_CLOUD_KEY = {
+    "spark_key": {
+        "APP_USER": "replace_me",
+        "APP_KEY": "replace_me",
+    },
+    "batch_key": {
+        "APP_USER": "replace_me",
+        "APP_KEY": "replace_me",
+    }
+}
 
 ```
 
