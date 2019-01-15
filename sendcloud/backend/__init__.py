@@ -3,7 +3,11 @@ import requests
 from django.core.mail.backends.base import BaseEmailBackend
 from django.core.mail.message import sanitize_address
 from sendcloud.exceptions import SendCloudAPIError
-from ..conf import get_send_mail_url
+from ..conf import (
+    get_send_mail_url,
+    get_send_cloud_spark_user,
+    get_send_cloud_spark_key,
+)
 
 logger = logging.getLogger("sendcloud")
 
@@ -16,24 +20,24 @@ class SendCloudBackend(BaseEmailBackend):
 
         super(SendCloudBackend, self).__init__(fail_silently=fail_silently,
                                                *args, **kwargs)
-        try:
-            self._app_user =
-            self._app_key =
-            # self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
-            # self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
-        except AttributeError:
-            if fail_silently:
-                self._app_user, self._app_key = None, None
-            else:
-                raise
+        # try:
+        #     self._app_user =
+        #     self._app_key =
+        #     # self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
+        #     # self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
+        # except AttributeError:
+        #     if fail_silently:
+        #         self._app_user, self._app_key = None, None
+        #     else:
+        #         raise
 
     @property
     def app_user(self):
-        return self._app_user
+        return get_send_cloud_spark_user()
 
     @property
     def app_key(self):
-        return self._app_key
+        return get_send_cloud_spark_key()
 
     @property
     def api_url(self):
