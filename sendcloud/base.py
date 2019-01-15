@@ -1,9 +1,12 @@
+import logging
 import requests
 from .exceptions import SendCloudAPIError
 from .conf import (
     get_send_cloud_batch_user,
     get_send_cloud_batch_key,
 )
+
+logger = logging.getLogger('sendcloud')
 
 
 class SendCloudAPIBase(object):
@@ -29,7 +32,9 @@ class SendCloudAPIBase(object):
     def get(self, url, **kwargs):
         payload = self.get_payload()
         payload.update(**kwargs)
+        logger.info(payload)
         r = requests.get(url=url, params=payload)
+        logger.info(r.content)
         if r.status_code == 200:
             return r.json()
         else:
@@ -38,7 +43,9 @@ class SendCloudAPIBase(object):
     def post(self, url, **kwargs):
         payload = self.get_payload()
         payload.update(**kwargs)
+        logger.info(payload)
         r = requests.post(url=url, data=payload)
+        logger.info(r.content)
         if r.status_code == 200:
             return r.json()
         else:
