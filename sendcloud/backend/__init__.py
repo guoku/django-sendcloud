@@ -45,15 +45,13 @@ class SendCloudBackend(BaseEmailBackend):
     def close(self):
         pass
 
-    def _send(self, email_message):
+    def _send(self, email_message, template=None):
         """A helper method that does the actual sending."""
         # print (dir(email_message))
         if not email_message.recipients():
             return False
         from_email = sanitize_address(email_message.from_email,
                                       email_message.encoding)
-        # from_name = sanitize_address(email_message.from_name,
-        #                              email_message.encoding)
         recipients = [sanitize_address(addr, email_message.encoding)
                       for addr in email_message.recipients()]
 
@@ -66,6 +64,10 @@ class SendCloudBackend(BaseEmailBackend):
             "to": recipients,
             "html": email_message.body,
         }
+        if template:
+            params.update({
+                "templateInvokeName": template,
+            })
 
         r = requests.post(self.api_url, files={}, data=params)
 

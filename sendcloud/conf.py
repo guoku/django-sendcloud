@@ -1,8 +1,24 @@
 BASE_URL = "http://api.sendcloud.net/apiv2"
 
 SEND_CLOUD = {
-    "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
-    "mail_template_send": "{base_url}/mail/sendtemplate".format(base_url=BASE_URL),
+    # "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
+    # "mail_template_send": "{base_url}/mail/sendtemplate".format(base_url=BASE_URL),
+
+    "mail": {
+        "send_mail": "{base_url}/mail/send".format(base_url=BASE_URL),
+        "send_template": "{base_url}/mail/sendtemplate".format(base_url=BASE_URL),
+        "send_calendar": "{base_url}/mail/sendcalendar".format(base_url=BASE_URL),
+        "task_info": "{base_url}/mail/taskinfo".format(base_url=BASE_URL),
+    },
+
+    "template": {
+        "list": "{base_url}/template/list".format(base_url=BASE_URL),
+        "get": "{base_url}/template/get".format(base_url=BASE_URL),
+        "add": "{base_url}/template/add".format(base_url=BASE_URL),
+        "delete": "{base_url}/template/delete".format(base_url=BASE_URL),
+        "update": "{base_url}/template/update".format(base_url=BASE_URL),
+    },
+
     "mail_template_list": "{base_url}/template/list".format(base_url=BASE_URL),
     "mail_template_get": "{base_url}/template/get".format(base_url=BASE_URL),
     "mail_template_add": "{base_url}/template/add".format(base_url=BASE_URL),
@@ -24,13 +40,28 @@ def get_send_cloud_setting(settings):
     return send_cloud_config.get(settings)
 
 
+def get_mail_config(kind="send_mail"):
+    _mail = get_send_cloud_setting("mail")
+    return _mail.get(kind)
+
+
 def get_send_mail_url():
-    return get_send_cloud_setting("send_mail")
+    return get_mail_config()
 
 
 def get_template_send():
-    return get_send_cloud_setting("mail_template_send")
+    return get_mail_config(kind="send_template")
 
+
+def get_send_calendar():
+    return get_mail_config(kind="send_calendar")
+
+
+def get_task_info():
+    return get_mail_config(kind="task_info")
+
+
+# ----------------------------------------------------------------------------------------------------------------------
 
 def get_template_list():
     return get_send_cloud_setting("mail_template_list")
@@ -70,3 +101,10 @@ def member_update():
 
 def member_delete():
     return get_send_cloud_setting("member_delete")
+
+
+if __name__ == "__main__":
+    print(get_send_mail_url())
+    print(get_template_send())
+    print(get_send_calendar())
+    print(get_task_info())
