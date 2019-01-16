@@ -15,21 +15,9 @@ logger = logging.getLogger("sendcloud")
 class SendCloudBackend(BaseEmailBackend):
 
     def __init__(self, fail_silently=False, *args, **kwargs):
-        # app_user, app_key = (kwargs.pop('app_user', None),
-        #                      kwargs.pop('app_key', None))
 
         super(SendCloudBackend, self).__init__(fail_silently=fail_silently,
                                                *args, **kwargs)
-        # try:
-        #     self._app_user =
-        #     self._app_key =
-        #     # self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
-        #     # self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
-        # except AttributeError:
-        #     if fail_silently:
-        #         self._app_user, self._app_key = None, None
-        #     else:
-        #         raise
 
     @property
     def app_user(self):

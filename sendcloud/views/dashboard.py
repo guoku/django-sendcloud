@@ -6,7 +6,7 @@ logger = logging.getLogger('sendcloud')
 
 
 class DashboardView(generic.TemplateView):
-    template_name = 'sendcloud/template/dashboard.html'
+    template_name = 'sendcloud/dashboard.html'
 
     def get_userinfo(self):
         r = UserInfoAPI().user_info()

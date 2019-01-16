@@ -40,7 +40,11 @@ SEND_CLOUD_DEFAULTS = {
 
     "user_info": {
         "get": "{base_url}/userinfo/get".format(base_url=BASE_URL),
-    }
+    },
+
+    "analytics": {
+        "invalid_stat": "{base_url}/invalidstat/list".format(base_url=BASE_URL),
+    },
 
 }
 
@@ -158,6 +162,13 @@ def member_delete():
 def get_user_info_url():
     _info = get_send_cloud_setting('user_info')
     return _info.get('get')
+
+
+# http://www.sendcloud.net/doc/email_v2/stats_do/#_3
+# ----------------------------------------------------------------------------------------------------------------------
+def get_invalid_stat_url():
+    _analytics = get_send_cloud_setting('analytics')
+    return _analytics.get("invalid_stat")
 
 
 if __name__ == "__main__":

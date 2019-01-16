@@ -1,0 +1,46 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="module" id="changelist">
+        <div class="results">
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th>{% trans 'sendDate' %}</th>
+                        <th>apiUser</th>
+                        <th>{% trans 'domain' %}</th>
+                        <th>{% trans 'sendcloudBlacklist' %}</th>
+                        <th>{% trans 'ubsubscribe' %}</th>
+                        <th>{% trans 'espUnvaliable' %}</th>
+                        <th>{% trans 'recipientAddressError' %}</th>
+{#                        <th>{% trans 'ipOrDomainRejected' %}</th>#}
+                        <th>{% trans 'recipientNotFound' %}</th>
+                        <th>{% trans 'spamEmails' %}</th>
+                        <th>{% trans 'senderOrRecipientRejected' %}</th>
+                        <th>{% trans 'others' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in object_list %}
+                        <tr>
+                            <td>{{ row.sendDate }}</td>
+                            <td>{{ row.apiUser }}</td>
+                            <td>{{ row.domain }}</td>
+                            <td>{{ row.sendcloudBlacklist }}</td>
+                            <td>{{ row.ubsubscribe }}</td>
+                            <td>{{ row.espUnvaliable }}</td>
+                            <td>{{ row.recipientAddressError }}</td>
+{#                            <td>{{ row.ipOrDomainRejected }}</td>#}
+                            <td>{{ row.recipientNotFound }}</td>
+                            <td>{{ row.spamEmail }}</td>
+                            <td>{{ row.senderOrRecipientRejected }}</td>
+                            <td>{{ row.others }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
