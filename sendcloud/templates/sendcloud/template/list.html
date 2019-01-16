@@ -1,4 +1,4 @@
-{% extends "admin/base_site.html" %}
+{% extends "admin/base.html" %}
 {% load i18n %}
 {% load admin_static %}
 
@@ -10,10 +10,12 @@
 {% block breadcrumbs %}
     <div class="breadcrumbs">
         <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
-{#        <a href="{% url 'rq_home' %}">Django RQ</a> &rsaquo;#}
+{#        <a href="{% url 'rq_home' %}">Django SendCloud</a> &rsaquo;#}
 {#        <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }} Workers</a>#}
     </div>
 {% endblock %}
+
+
 
 {% block content %}
     <div class="module" id="changelist">

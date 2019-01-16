@@ -38,13 +38,16 @@ SEND_CLOUD_DEFAULTS = {
         "delete": "{base_url}/addressmember/delete".format(base_url=BASE_URL),
     },
 
+    "user_info": {
+        "get": "{base_url}/userinfo/get".format(base_url=BASE_URL),
+    }
+
 }
 
 send_cloud_config = SEND_CLOUD_DEFAULTS.copy()
 
 
 def get_send_cloud_setting(sc_config):
-
     send_cloud_config.update(
         getattr(settings, "SEND_CLOUD_KEY", {})
     )
@@ -149,6 +152,12 @@ def member_update():
 def member_delete():
     return get_member_config(kind='delete')
     # return get_send_cloud_setting("member_delete")
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+def get_user_info_url():
+    _info = get_send_cloud_setting('user_info')
+    return _info.get('get')
 
 
 if __name__ == "__main__":
