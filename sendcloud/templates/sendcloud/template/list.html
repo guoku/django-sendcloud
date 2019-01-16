@@ -1,0 +1,45 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% load admin_static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+{#        <a href="{% url 'rq_home' %}">Django RQ</a> &rsaquo;#}
+{#        <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }} Workers</a>#}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="module" id="changelist">
+        <div class="results">
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th>{% trans 'name' %}</th>
+                        <th>{% trans 'invokeName' %}</th>
+                        <th>{% trans 'templateType' %}</th>
+                        <th>{% trans 'gmtCreated' %}</th>
+                        <th>{% trans 'gmtUpdated' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in object_list %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.invokeName }}</td>
+                            <td>{{ row.templateType }}</td>
+                            <td>{{ row.gmtCreated }}</td>
+                            <td>{{ row.gmtUpdated }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}

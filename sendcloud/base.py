@@ -24,8 +24,8 @@ class SendCloudAPIBase(object):
 
     def get_payload(self):
         _data = {
-            "appUser": self.app_user,
-            "appKey": self.app_key
+            "apiUser": self.app_user,
+            "apiKey": self.app_key
         }
         return _data
 

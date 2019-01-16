@@ -121,7 +121,7 @@ from .conf import (
 
 class TemplateAPI(SendCloudAPIBase):
 
-    def __init__(self, invoke_name):
+    def __init__(self, invoke_name=None):
         self._invoke_name = invoke_name
 
     @property
@@ -152,11 +152,16 @@ class TemplateAPI(SendCloudAPIBase):
         # _data = self.get_payload()
 
         _data = {
-            "invoke_name": self.invoke_name,
             "templateType": template_type,
             "start": star,
             "limit": limit,
         }
+
+        if self.invoke_name:
+            _data.update(
+                {
+                    "invoke_name": self.invoke_name,
+                })
 
         r = self.post(self.list_template_url, **_data)
         return r

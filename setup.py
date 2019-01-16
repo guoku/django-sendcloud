@@ -36,6 +36,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     # platforms=['any'],
     install_requires=['requests >= 2.1'],
+    include_package_data=True,
     keywords="django-sendcloud",
     classifiers=CLASSIFIERS,
     zip_safe=False,
