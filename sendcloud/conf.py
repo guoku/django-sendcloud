@@ -42,6 +42,11 @@ SEND_CLOUD_DEFAULTS = {
         "get": "{base_url}/userinfo/get".format(base_url=BASE_URL),
     },
 
+    "api_user": {
+        "list": "{base_url}/apiuser/list".format(base_url=BASE_URL),
+        "add": "{base_url}/apiuser/add".format(base_url=BASE_URL),
+    },
+
     "analytics": {
         "invalid_stat": "{base_url}/invalidstat/list".format(base_url=BASE_URL),
     },
