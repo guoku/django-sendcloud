@@ -170,6 +170,29 @@ class TemplateAPI(SendCloudAPIBase):
         return r
 
     def add(self, name, html, subject, email_type=1):
+        """
+
+        :param name: 邮件模板名称
+        :param html: html格式内容
+        :param subject: 模板标题
+        :param email_type: 邮件模板类型: 0(触发), 1(批量)
+        :return: {
+                    "statusCode": 200,
+                    "info": {
+                        "data": {
+                            "name": "test",
+                            "invokeName": "testtemplate",
+                            "templateType": 0,
+                            "gmtCreated": "2015-10-16 10:42:01",
+                            "gmtUpdated": "",
+                            "html": "<p>add new template</p>",
+                            "subject": "test_subject"
+                        }
+                    },
+                    "message": "请求成功",
+                    "result": true
+                }
+        """
 
         if name is None:
             raise ValueError("The given name have must be set")
