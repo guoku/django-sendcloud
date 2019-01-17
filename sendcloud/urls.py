@@ -6,10 +6,11 @@ from .views.analytics import InvalidStatView
 
 urlpatterns = [
 
-    url(r'^dashboard/$', DashboardView.as_view(), name='dashboard'),
-    url(r'^template/$', MailTemplateListView.as_view()),
+    url(r'^dashboard/$', DashboardView.as_view(), name='send_cloud_dashboard'),
+
+    url(r'^template/$', MailTemplateListView.as_view(), name='send_cloud_template_list'),
 
 
-    url(r'^analytics/invalid/$', InvalidStatView.as_view(), name='invalid_stat'),
+    url(r'^analytics/invalid/$', InvalidStatView.as_view(), name='send_cloud_invalid_stat'),
 
 ]
