@@ -217,3 +217,30 @@ class TemplateAPI(SendCloudAPIBase):
         r = self.post(url=self.add_template_url, **_data)
         logger.info(r)
         return r
+
+    def delete(self):
+        if self.invoke_name:
+            _data = {"invoke_name": self.invoke_name, }
+        r = self.post(url=self.delete_template_url, **_data)
+        logger.info(r)
+        return r
+
+    def update(self, name, html, subject, email_type=1):
+        _data = {
+            "templateType": email_type,
+        }
+        if name is not None:
+            _data.update({"name": name})
+        if html is not None:
+            _data.update({"html": html})
+        if subject is not None:
+            _data.update({"subject": subject})
+
+        if self.invoke_name:
+            _data.update(
+                {
+                    "invoke_name": self.invoke_name,
+                })
+        r = self.post(url=self.update_template_url, **_data)
+        logger.info(r)
+        return r
