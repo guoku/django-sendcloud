@@ -33,3 +33,8 @@ urlpatterns = [
 urlpatterns += [
     url('^sendcloud/', include('sendcloud.urls')),
 ]
+
+
+admin.site.site_header = "Django Send Cloud"
+admin.site.site_title = "Django Send Cloud"
+admin.site.index_title = "Django Send Cloud"

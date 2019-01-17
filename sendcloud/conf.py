@@ -169,6 +169,16 @@ def get_user_info_url():
     return _info.get('get')
 
 
+def api_user_list_url():
+    _info = get_send_cloud_setting('api_user')
+    return _info.get("list")
+
+
+def api_user_add_url():
+    _info = get_send_cloud_setting('api_user')
+    return _info.get('add')
+
+
 # http://www.sendcloud.net/doc/email_v2/stats_do/#_3
 # ----------------------------------------------------------------------------------------------------------------------
 def get_invalid_stat_url():

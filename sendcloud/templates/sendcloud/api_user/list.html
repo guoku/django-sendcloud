@@ -1,0 +1,47 @@
+{% extends 'admin/base.html' %}
+{% load i18n %}
+
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+        <a href="{% url 'send_cloud_dashboard' %}">Django SendCloud</a> &rsaquo;
+        <a href = "{% url 'send_cloud_api_user' %}">API User</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="module" id="changelist">
+        <div class="results">
+            <table id="result_list">
+                <thead>
+                    <tr>
+                        <th>{% trans 'name' %}</th>
+                        <th>{% trans 'cType' %}</th>
+                        <th>{% trans 'emailType' %}</th>
+                        <th>{% trans 'domainName' %}</th>
+                        <th>{% trans 'neteaseSender' %}</th>
+                        <th>{% trans 'click' %}</th>
+                        <th>{% trans 'open' %}</th>
+                        <th>{% trans 'unsubscribe' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in object_list %}
+                        <tr>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.cType }}</td>
+                            <td>{{ row.emailType }}</td>
+                            <td>{{ row.domainName }}</td>
+                            <td>{{ row.neteaseSender }}</td>
+                            <td>{{ row.click }}</td>
+                            <td>{{ row.open }}</td>
+                            <td>{{ row.unsubscribe }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,6 +1,9 @@
 import logging
 import requests
-from ..exceptions import SendCloudAPIError
+from ..exceptions import (
+    SendCloudAPIError,
+    SendCloudConnectionError
+)
 from ..conf import (
     get_send_cloud_batch_user,
     get_send_cloud_batch_key,
@@ -44,7 +47,10 @@ class SendCloudAPIBase(object):
         payload = self.get_payload()
         payload.update(**kwargs)
         logger.info(payload)
-        r = requests.post(url=url, data=payload)
+        try:
+            r = requests.post(url=url, data=payload, timeout=5)
+        except SendCloudConnectionError as e:
+            raise SendCloudConnectionError(e)
         logger.info(r.content)
         if r.status_code == 200:
             return r.json()
