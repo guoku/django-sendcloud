@@ -108,6 +108,7 @@
 #         }
 #         return self.post_api(self.send_url, data)
 
+import logging
 
 from .base import SendCloudAPIBase
 from .conf import (
@@ -117,6 +118,8 @@ from .conf import (
     delete_template,
     get_template,
 )
+
+logger = logging.getLogger('sendcloud')
 
 
 class TemplateAPI(SendCloudAPIBase):
@@ -164,4 +167,30 @@ class TemplateAPI(SendCloudAPIBase):
                 })
 
         r = self.post(self.list_template_url, **_data)
+        return r
+
+    def add(self, name, html, subject, email_type=1):
+
+        if name is None:
+            raise ValueError("The given name have must be set")
+        if html is None:
+            raise ValueError("The given html have must be set")
+        if subject is None:
+            raise ValueError("The given subject have must be set")
+
+        _data = {
+            "name": name,
+            "html": html,
+            "subject": subject,
+            "templateType": email_type,
+        }
+
+        if self.invoke_name:
+            _data.update(
+                {
+                    "invoke_name": self.invoke_name,
+                })
+
+        r = self.post(url=self.add_template_url, **_data)
+        logger.info(r)
         return r
