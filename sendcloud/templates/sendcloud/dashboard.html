@@ -1,11 +1,13 @@
-{% extends "admin/base_site.html" %}
+{% extends "admin/index.html" %}
 {% load i18n %}
 {% load admin_static %}
 
 
-{% block content %}
-    <div class="module" id="changelist">
-        <div class="results">
+
+{% block sidebar %}
+    <div id="content-related">
+        <div class="module" id="recent-actions-module">
+            <h2>{% trans 'Recent Account info' %}</h2>
             <table id="result_list">
                 <thead>
                     <tr>

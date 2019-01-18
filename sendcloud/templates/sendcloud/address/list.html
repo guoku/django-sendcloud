@@ -16,16 +16,27 @@
 {% endblock %}
 
 
-
 {% block content %}
+
+{#    {% block object-tools %}#}
+{#        <ul class="object-tools">#}
+{#            <li>#}
+{#                <a href="#">{% trans 'add' %}</a>#}
+{#            </li>#}
+{#        </ul>#}
+{#    {% endblock %}#}
+
+
     <div class="module" id="changelist">
         <div class="results">
             <table id="result_list">
                 <thead>
                     <tr>
                         <th>{% trans 'name' %}</th>
-                        <th>{% trans 'invokeName' %}</th>
-                        <th>{% trans 'templateType' %}</th>
+                        <th>{% trans 'address' %}</th>
+                        <th>{% trans 'listType' %}</th>
+                        <th>{% trans 'memberCount' %}</th>
+                        <th>{% trans 'description' %}</th>
                         <th>{% trans 'gmtCreated' %}</th>
                         <th>{% trans 'gmtUpdated' %}</th>
                     </tr>
@@ -34,8 +45,10 @@
                     {% for row in object_list %}
                         <tr>
                             <td>{{ row.name }}</td>
-                            <td>{{ row.invokeName }}</td>
-                            <td>{{ row.templateType }}</td>
+                            <td>{{ row.address }}</td>
+                            <td>{{ row.listType }}</td>
+                            <td>{{ row.memberCount }}</td>
+                            <td>{{ row.description }}</td>
                             <td>{{ row.gmtCreated }}</td>
                             <td>{{ row.gmtUpdated }}</td>
                         </tr>
