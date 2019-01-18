@@ -169,6 +169,14 @@ class TemplateAPI(SendCloudAPIBase):
         r = self.post(self.list_template_url, **_data)
         return r
 
+    def get(self):
+        if self.invoke_name is None:
+            raise ValueError("The given invoke name have must be set")
+        _data = {"invoke_name": self.invoke_name, }
+        r = self.post(url=self.get_template_url, **_data)
+        logger.info(r)
+        return r
+
     def add(self, name, html, subject, email_type=1):
         """
 
@@ -219,8 +227,9 @@ class TemplateAPI(SendCloudAPIBase):
         return r
 
     def delete(self):
-        if self.invoke_name:
-            _data = {"invoke_name": self.invoke_name, }
+        if self.invoke_name is None:
+            raise ValueError("The given invoke name have must be set")
+        _data = {"invoke_name": self.invoke_name, }
         r = self.post(url=self.delete_template_url, **_data)
         logger.info(r)
         return r

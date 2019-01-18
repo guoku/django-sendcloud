@@ -30,6 +30,14 @@ SEND_CLOUD_DEFAULTS = {
         "update": "{base_url}/template/update".format(base_url=BASE_URL),
     },
 
+    "address_list": {
+        "list": "{base_url}/addresslist/list".format(base_url=BASE_URL),
+        "add": "{base_url}/addresslist/add".format(base_url=BASE_URL),
+        "delete": "{base_url}/addresslist/delete".format(base_url=BASE_URL),
+        "update": "{base_url}/addresslist/update".format(base_url=BASE_URL),
+
+    },
+
     "member": {
         "list": "{base_url}/addressmember/list".format(base_url=BASE_URL),
         "get": "{base_url}/addressmember/get".format(base_url=BASE_URL),
@@ -106,6 +114,7 @@ def get_task_info():
     return get_mail_config(kind="task_info")
 
 
+# send cloud template url
 # ----------------------------------------------------------------------------------------------------------------------
 def get_template_config(kind="list"):
     _template = get_send_cloud_setting("template")
@@ -132,6 +141,30 @@ def update_template():
     return get_template_config("update")
 
 
+# send cloud address list url
+# ----------------------------------------------------------------------------------------------------------------------
+def get_address_list_config(kind="list"):
+    _address_list = get_send_cloud_setting("address_list")
+    return _address_list.get(kind)
+
+
+def address_list():
+    return get_address_list_config()
+
+
+def address_add():
+    return get_address_list_config(kind="add")
+
+
+def address_update():
+    return get_address_list_config(kind="update")
+
+
+def address_delete():
+    return get_address_list_config(kind="delete")
+
+
+# send cloud member url
 # ----------------------------------------------------------------------------------------------------------------------
 def get_member_config(kind="list"):
     _member = get_send_cloud_setting("member")
