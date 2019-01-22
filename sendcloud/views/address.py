@@ -15,3 +15,7 @@ class AddressListView(generic.ListView):
 class AddressCreateView(generic.CreateView):
     template_name = "sendcloud/address/add.html"
     form_class = AddressListForm
+
+    def get_form_kwargs(self):
+        return {}
+

@@ -2,7 +2,10 @@ from django.conf.urls import url
 from .views import MailTemplateListView
 from .views.dashboard import DashboardView
 from .views.analytics import InvalidStatView
-from .views.address import AddressListView
+from .views.address import (
+    AddressListView,
+    AddressCreateView
+)
 from .views.api_user import APIUserListView
 
 
@@ -11,6 +14,7 @@ urlpatterns = [
     url(r'^dashboard/$', DashboardView.as_view(), name='send_cloud_dashboard'),
 
     url(r'address/$', AddressListView.as_view(), name='send_cloud_address_list'),
+    url(r'address/add/?$', AddressCreateView.as_view(), name='send_cloud_address_add'),
 
     url(r'^template/$', MailTemplateListView.as_view(), name='send_cloud_template_list'),
 
