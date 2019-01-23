@@ -1,6 +1,6 @@
 {% extends 'admin/base_site.html' %}
 
-{% load admin_static %}
+{% load admin_static  %}
 
 {% block extrastyle %}
     {{ block.super }}
@@ -20,9 +20,28 @@
 
     <div id="content-main">
     {{ form.error }}
-        <form action="" method="post">
+        <form action="" method="post" novalidate>
             {% csrf_token %}
-            {{ form }}
+{#{% block field_sets %}#}
+{% for fieldset in form %}
+    <fieldset class=" aligned" >
+        {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+        {% if fieldset.description %}
+            <div class="description">{{ fieldset.description|safe }}</div>
+        {% endif %}
+        <div class="form-row">
+            <div class="field-box">
+                {{ fieldset }}
+
+                {% if fieldset.help_text %}
+                    <div class="help">{{ fieldset.help_text|safe }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </fieldset>
+{#  {% include "admin/includes/fieldset.html" %}#}
+{% endfor %}
+{#{% endblock %}#}
             <div>
                 <input type="submit" value="submit" />
             </div>
