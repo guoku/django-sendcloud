@@ -31,15 +31,11 @@ class MemberAPI(SendCloudAPIBase):
         return member_delete()
 
     def list(self, address=None, star=0, limit=100):
+        if address is None:
+            raise ValueError("The given address have must be set!")
         _data = {
+            "address": address,
             'star': star,
             'limit': limit,
         }
-        #     "address": address
-        # }
-        if address is not None:
-            _data = {
-                "address": address
-            }
-
         r = self.post(url=self.member_get_url, **_data)
