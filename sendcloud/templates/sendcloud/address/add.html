@@ -19,6 +19,7 @@
 {% block content %}
 
     <div id="content-main">
+    {{ form.error }}
         <form action="" method="post">
             {% csrf_token %}
             {{ form }}

@@ -1,8 +1,66 @@
-{% extends 'admin/base.html' %}
+{% extends 'admin/change_list.html' %}
+{% load i18n %}
+
+{% load admin_static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}" />
+  {% if cl.formset %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+  {% endif %}
+  {% if cl.formset or action_form %}
+    <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+  {% endif %}
+  {{ media.css }}
+  {% if not actions_on_top and not actions_on_bottom %}
+    <style>
+      #changelist table thead th:first-child {width: inherit}
+    </style>
+  {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+        <a href="{% url 'send_cloud_dashboard' %}">Django SendCloud</a> &rsaquo;
+{#        <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }} Workers</a>#}
+    </div>
+{% endblock %}
 
 
 {% block content %}
-
-
+    <div id="content-main">
+        <div class="module" id="changelist">
+{#            <div class="results">#}
+            <form id="changelist-form"  method="post" action="">{% csrf_token %}
+                <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>{% trans 'member' %}</th>
+                        <th>{% trans 'address' %}</th>
+                        <th>{% trans 'name' %}</th>
+                        <th>{% trans 'vars' %}</th>
+                        <th>{% trans 'gmtCreated' %}</th>
+                        <th>{% trans 'gmtUpdated' %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in object_list %}
+                        <tr>
+                            <td>{{ row.member }}</td>
+                            <td>{{ row.address }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.vars }}</td>
+                            <td>{{ row.gmtCreated }}</td>
+                            <td>{{ row.gmtUpdated }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </form>
+{#            </div>#}
+        </div>
+    </div>
 
 {% endblock %}

@@ -45,7 +45,9 @@
                     {% for row in object_list %}
                         <tr>
                             <td>{{ row.name }}</td>
-                            <td>{{ row.address }}</td>
+                            <td>
+                                <a href="{% url 'member_list' %}?address={{ row.address }}" title="{{ row.address }}">{{ row.address }}</a>
+                            </td>
                             <td>{{ row.listType }}</td>
                             <td>{{ row.memberCount }}</td>
                             <td>{{ row.description }}</td>

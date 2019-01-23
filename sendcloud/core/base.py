@@ -25,6 +25,16 @@ class SendCloudAPIBase(object):
     def app_key(self):
         return get_send_cloud_batch_key()
 
+    def validate_number(self, number):
+        """
+        Validates the given 1-based page number.
+        """
+        try:
+            number = int(number)
+        except (TypeError, ValueError):
+            raise SendCloudAPIError('That page number is not an integer')
+        return number
+
     def get_payload(self):
         _data = {
             "apiUser": self.app_user,

@@ -3,6 +3,7 @@ from django.conf.urls import url
 from sendcloud.views import (
     AddressListView,
     AddressCreateView,
+    MemberListView,
     MailTemplateListView
 )
 # from .views import MailTemplateListView
@@ -24,7 +25,7 @@ urlpatterns = [
     url(r'^address/$', AddressListView.as_view(), name='send_cloud_address_list'),
     url(r'^address/add/?$', AddressCreateView.as_view(), name='send_cloud_address_add'),
 
-
+    url(r'^members/$', MemberListView.as_view(), name='member_list'),
 
 
     url(r'^analytics/invalid/$', InvalidStatView.as_view(), name='send_cloud_invalid_stat'),
