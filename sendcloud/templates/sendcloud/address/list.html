@@ -17,17 +17,15 @@
 
 
 {% block content %}
+    <div id="content-main">
+        <h1>{% trans 'email address list' %}</h1>
+        <ul class="object-tools">
+            <li>
+                <a href="{% url 'send_cloud_address_add' %}">{% trans 'add' %}</a>
+            </li>
+        </ul>
 
-{#    {% block object-tools %}#}
-{#        <ul class="object-tools">#}
-{#            <li>#}
-{#                <a href="#">{% trans 'add' %}</a>#}
-{#            </li>#}
-{#        </ul>#}
-{#    {% endblock %}#}
-
-
-    <div class="module" id="changelist">
+        <div class="module" id="changelist">
         <div class="results">
             <table id="result_list">
                 <thead>
@@ -57,6 +55,7 @@
                     {% endfor %}
                 </tbody>
         </table>
+        </div>
         </div>
     </div>
 {% endblock %}

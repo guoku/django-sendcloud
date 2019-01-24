@@ -15,6 +15,14 @@
 {% endblock %}
 
 
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+        <a href="{% url 'send_cloud_dashboard' %}">Django SendCloud</a> &rsaquo;
+    </div>
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -28,6 +36,9 @@
                         <div>
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                             {{ field }}
+                            {% if field.help_text %}
+                                <div class="help">{{ field.help_text|safe }}</div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
