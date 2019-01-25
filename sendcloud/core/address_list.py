@@ -76,7 +76,14 @@ class AddressListAPI(SendCloudAPIBase):
         return r
 
     def delete(self, **kwargs):
-        _data = {}
+        _address = kwargs.get('address', None)
+        if _address is None:
+            raise ValueError("The given name have must be set")
+
+        _data = {
+            "address": _address,
+        }
 
         r = self.post(url=self.address_delete_url, **_data)
-        return
+        logger.info(r)
+        return r
