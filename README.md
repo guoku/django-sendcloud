@@ -56,4 +56,7 @@ SEND_CLOUD_KEY = {
     ```.shell
     python manage.py sc_members -a -L  xxxxx@maillist.sendcloud.org -m xxxx@example.com
     ```
-
+3. 删除列表成员
+    ```.shell
+    python manage.py sc_members -d -L xxxxx@maillist.sendcloud.org -m xxxx@example.com
+    ```
