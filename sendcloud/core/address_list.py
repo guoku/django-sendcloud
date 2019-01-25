@@ -74,3 +74,9 @@ class AddressListAPI(SendCloudAPIBase):
         r = self.post(url=self.address_add_url, **_data)
         logger.info(r)
         return r
+
+    def delete(self, **kwargs):
+        _data = {}
+
+        r = self.post(url=self.address_delete_url, **_data)
+        return
