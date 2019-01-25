@@ -42,5 +42,18 @@ SEND_CLOUD_KEY = {
 
 ```
 
+## CLI Dashboard
 
+### 地址列表
+
+1. 查询列表成员
+    ```.shell
+    python manage.py sc_members -l -L  xxxxx@maillist.sendcloud.org
+    ```
+    
+2. 添加列表成员
+
+    ```.shell
+    python manage.py sc_members -a -L  xxxxx@maillist.sendcloud.org -m xxxx@example.com
+    ```
 
