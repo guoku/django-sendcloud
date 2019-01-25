@@ -30,6 +30,13 @@ class Command(BaseCommand):
         )
 
         parser.add_argument(
+            '-n', '--new-member',
+            dest='new_member',
+            type=str,
+            help="Send Cloud Mail Address List update Old Member to New Member",
+        )
+
+        parser.add_argument(
             '-a', '--add',
             dest='add',
             action='store_true',
@@ -41,6 +48,13 @@ class Command(BaseCommand):
             dest='delete',
             action='store_true',
             help="Delete member from Address list",
+        )
+
+        parser.add_argument(
+            '-u', '--update',
+            dest='update',
+            action='store_true',
+            help='Update member from Address list'
         )
 
         parser.add_argument(
@@ -85,9 +99,10 @@ class Command(BaseCommand):
         _list = options.get('list')
         _add = options.get('add')
         _delete = options.get('delete')
+        _update = options.get('update')
 
         _member = options.get('member')
-        # logger.info(_address)
+        _new_member = options.get('new_member')
 
         if _list:
             r = MemberAPI().list(address=_mail_list)
@@ -106,6 +121,28 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS(
                     "delete member ({member}) Success".format(member=_member)
+                )
+            )
+
+        if _update:
+            r = MemberAPI().update(
+                address=_mail_list,
+                members=[_member],
+                new_members=[_new_member],
+            )
+            if r['addressNotExistCount']:
+                self.stdout.write(
+                    self.style.ERROR(
+                        "member ({member}) Not Exist!".format(member=_member)
+                    )
+                )
+            else:
+                self.stdout.write(
+                    self.style.SUCCESS(
+                        "update member {member} to ({new_member}) Success".format(
+                            member=_member,
+                            new_member=_new_member
+                        )
                 )
             )
         return

@@ -74,6 +74,18 @@ class MemberAPI(SendCloudAPIBase):
 
         return r['info']
 
+    def update(self, address=None, members=[], new_members=[]):
+        if address is None:
+            raise ValueError("The given address have must be set!")
+
+        _data = {
+            "address": address,
+            "members": ';'.join(members),
+            "newMembers": ';'.join(new_members),
+        }
+        r = self.post(url=self.member_update_url, **_data)
+        return r['info']
+
     def delete(self, address=None, members=[]):
         if address is None:
             raise ValueError("The given address have must be set!")
