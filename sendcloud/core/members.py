@@ -55,12 +55,24 @@ class MemberAPI(SendCloudAPIBase):
             'limit': limit,
         }
         r = self.post(url=self.member_list_url, **_data)
-        logger.info(r)
+        # logger.info(r)
 
         self._count = r['info']['count']
         self._total = r['info']['total']
 
         return r['info']['dataList']
+
+    def add(self, address=None, members=[]):
+        if address is None:
+            raise ValueError("The given address have must be set!")
+        _data = {
+            "address": address,
+            "members": ';'.join(members),
+        }
+
+        r = self.post(url=self.member_add_url, **_data)
+
+        return r['info']
 
     def delete(self, address=None, members=[]):
         if address is None:
