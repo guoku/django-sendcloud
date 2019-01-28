@@ -37,7 +37,7 @@ class Command(BaseCommand):
             click.echo(
                 """| %-25s|%45s | %15s|%25s |%20s |%20s |""" %
                 (row['name'], row['address'], row["memberCount"],
-                 row['description'].strip(), row['gmtCreated'], row['gmtUpdated'])
+                 row['description'], row['gmtCreated'], row['gmtUpdated'])
             )
 
         self._print_separator()
@@ -56,6 +56,20 @@ class Command(BaseCommand):
             help="List SendCloud Mail Address",
         )
 
+        parser.add_argument(
+            '-a', '--add',
+            dest="add",
+            action="store_true",
+            help="add mail address list into Sendcloud"
+        )
+
+        parser.add_argument(
+            '-d', '--delete',
+            dest="delete",
+            action="store_true",
+            help="delete mail address from SendCloud"
+        )
+
     def handle(self, *args, **options):
         _list = options.get('list')
         _add = options.get('add')
@@ -63,7 +77,9 @@ class Command(BaseCommand):
 
         if _list:
             r = AddressListAPI().list()
-            # logger.info(r['info'])
             self._print_stats_dashboard(statistics=r['info']['dataList'])
+
+        if _add:
+            r = AddressListAPI.add()
 
         return
