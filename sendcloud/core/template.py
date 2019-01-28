@@ -59,10 +59,12 @@ class TemplateAPI(SendCloudAPIBase):
         r = self.post(self.list_template_url, **_data)
         return r
 
-    def get(self):
-        if self.invoke_name is None:
+    def get(self, **kwargs):
+        _invoke_name = kwargs.get('invoke_name', None)
+
+        if _invoke_name is None:
             raise ValueError("The given invoke name have must be set")
-        _data = {"invoke_name": self.invoke_name, }
+        _data = {"invokeName": _invoke_name, }
         r = self.post(url=self.get_template_url, **_data)
         logger.info(r)
         return r
