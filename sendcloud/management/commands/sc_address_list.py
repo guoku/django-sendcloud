@@ -4,7 +4,6 @@ import click
 from django.core.management.base import BaseCommand
 from sendcloud.core.address_list import AddressListAPI
 
-
 logger = logging.getLogger('sendcloud')
 
 
@@ -73,6 +72,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         _list = options.get('list')
         _add = options.get('add')
+        _delete = options.get('delete')
         _address = options.get('address')
 
         if _list:
@@ -80,6 +80,12 @@ class Command(BaseCommand):
             self._print_stats_dashboard(statistics=r['info']['dataList'])
 
         if _add:
-            r = AddressListAPI.add()
+            r = AddressListAPI.add(
+                address=_address,
+                # name=
+            )
+
+        if _delete:
+            r = AddressListAPI.delete()
 
         return

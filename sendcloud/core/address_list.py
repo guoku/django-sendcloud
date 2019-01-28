@@ -57,7 +57,8 @@ class AddressListAPI(SendCloudAPIBase):
         if _address is None:
             raise ValueError("The given address have must be set")
         if _name is None:
-            raise ValueError("The given name have must be set")
+            _name = _address.split("@")[0]
+            # raise ValueError("The given name have must be set")
 
         _data = {
             "address": _address,
