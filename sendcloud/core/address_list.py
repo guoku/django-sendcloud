@@ -45,7 +45,6 @@ class AddressListAPI(SendCloudAPIBase):
 
         r = self.post(url=self.address_list_url, **_data)
         logger.info(r)
-
         return r
 
     def add(self, **kwargs):

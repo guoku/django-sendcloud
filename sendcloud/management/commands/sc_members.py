@@ -61,7 +61,7 @@ class Command(BaseCommand):
             '-l', '--list',
             dest="list",
             action="store_true",
-            help="List SendCloud Mail Address",
+            help="List member from Address list",
         )
 
     def _print_separator(self):
