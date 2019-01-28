@@ -80,12 +80,24 @@ class Command(BaseCommand):
             self._print_stats_dashboard(statistics=r['info']['dataList'])
 
         if _add:
-            r = AddressListAPI.add(
+            r = AddressListAPI().add(
                 address=_address,
                 # name=
             )
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "add member ({address}) Success".format(address=_address)
+                )
+            )
 
         if _delete:
-            r = AddressListAPI.delete()
+            r = AddressListAPI().delete(
+                address=_address,
+            )
+            self.stdout.write(
+                self.style.SUCCESS(
+                    "delete member ({address}) Success".format(address=_address)
+                )
+            )
 
         return
