@@ -1,4 +1,4 @@
-__version__ = '1.0.0'
+__version__ = "1.0.0"
 
 import requests
 import logging
@@ -20,14 +20,14 @@ class SendCloudBackend(BaseEmailBackend):
     """
 
     def __init__(self, fail_silently=False, *args, **kwargs):
-        app_user, app_key = (kwargs.pop('app_user', None),
-                             kwargs.pop('app_key', None))
+        app_user, app_key = (kwargs.pop("app_user", None), kwargs.pop("app_key", None))
 
-        super(SendCloudBackend, self).__init__(fail_silently=fail_silently,
-                                               *args, **kwargs)
+        super(SendCloudBackend, self).__init__(
+            fail_silently=fail_silently, *args, **kwargs
+        )
         try:
-            self._app_user = app_user or getattr(settings, 'MAIL_APP_USER')
-            self._app_key = app_key or getattr(settings, 'MAIL_APP_KEY')
+            self._app_user = app_user or getattr(settings, "MAIL_APP_USER")
+            self._app_key = app_key or getattr(settings, "MAIL_APP_KEY")
         except AttributeError:
             if fail_silently:
                 self._app_user, self._app_key = None, None
@@ -59,12 +59,13 @@ class SendCloudBackend(BaseEmailBackend):
         # print (dir(email_message))
         if not email_message.recipients():
             return False
-        from_email = sanitize_address(email_message.from_email,
-                                      email_message.encoding)
+        from_email = sanitize_address(email_message.from_email, email_message.encoding)
         # from_name = sanitize_address(email_message.from_name,
         #                              email_message.encoding)
-        recipients = [sanitize_address(addr, email_message.encoding)
-                      for addr in email_message.recipients()]
+        recipients = [
+            sanitize_address(addr, email_message.encoding)
+            for addr in email_message.recipients()
+        ]
 
         params = {
             "apiUser": self.app_user,
@@ -84,9 +85,9 @@ class SendCloudBackend(BaseEmailBackend):
             return False
 
         res = r.json()
-        if not res['result']:
-            logger.info(res['message'])
-            raise SendCloudAPIError(res['message'])
+        if not res["result"]:
+            logger.info(res["message"])
+            raise SendCloudAPIError(res["message"])
         return True
 
     def send_messages(self, email_messages):
@@ -106,20 +107,17 @@ class SendCloudBackend(BaseEmailBackend):
 
 class APIBaseClass(object):
     def __init__(self, fail_silently=False, *args, **kwargs):
-        api_user, api_key = (kwargs.pop('app_user', None),
-                             kwargs.pop('app_key', None))
+        api_user, api_key = (kwargs.pop("app_user", None), kwargs.pop("app_key", None))
         self.fail_silently = fail_silently
         try:
-            self._api_user = api_user or getattr(settings, 'MAIL_APP_USER')
-            self._api_key = api_key or getattr(settings, 'MAIL_APP_KEY')
+            self._api_user = api_user or getattr(settings, "MAIL_APP_USER")
+            self._api_key = api_key or getattr(settings, "MAIL_APP_KEY")
         except AttributeError:
             if fail_silently:
                 self._api_user, self._api_key = None, None
             else:
                 raise
-        logger.info(
-            "{} {}".format(self._api_key, self._api_user)
-        )
+        logger.info("{} {}".format(self._api_key, self._api_user))
 
     @property
     def api_user(self):
@@ -131,10 +129,7 @@ class APIBaseClass(object):
 
     @property
     def payload(self):
-        return {
-            "apiUser": self.api_user,
-            "apiKey": self.api_key,
-        }
+        return {"apiUser": self.api_user, "apiKey": self.api_key}
 
     def post_api(self, url, data):
         r = requests.post(url, data=data)
@@ -144,10 +139,10 @@ class APIBaseClass(object):
             return False
 
         res = r.json()
-        if not res['result']:
-            logger.error(res['message'])
-            raise SendCloudAPIError(res['message'])
+        if not res["result"]:
+            logger.error(res["message"])
+            raise SendCloudAPIError(res["message"])
         return res
 
 
-__author__ = 'edison7500'
+__author__ = "edison7500"
