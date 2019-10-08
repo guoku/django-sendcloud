@@ -12,6 +12,9 @@ try:
 except:
     pass
 
+
+install_requires = (["requests>=2.1",],)
+
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
@@ -35,7 +38,7 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     # platforms=['any'],
-    install_requires=['requests >= 2.1'],
+    install_requires=install_requires,
     keywords="django-sendcloud",
     classifiers=CLASSIFIERS,
     zip_safe=False,
