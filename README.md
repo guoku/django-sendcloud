@@ -15,13 +15,15 @@ send cloud django 插件
 
 ## Overview
 
-**Install** 
+---
+
+### Install 
 
 ```.bash
 python setup.py install
 ```
 
-**在 Django 的 settings.py 加入** 
+### 在 Django 的 settings.py 加入  
 
 ```.python
 
@@ -42,7 +44,10 @@ SEND_CLOUD_KEY = {
 
 ```
 
+
 ## CLI Dashboard
+
+---
 
 ### 地址列表
 
