@@ -14,13 +14,8 @@ class AddressListForm(forms.Form):
         super(AddressListForm, self).__init__(**kwargs)
 
     def save(self):
-        logger.info("======================")
         logger.info(self.cleaned_data)
-
         address_list = AddressListAPI()
         r = address_list.add(**self.cleaned_data)
-        logger.info(r)
         return
 
-        # address_list = AddressListAPI()
-        # address_list.add()

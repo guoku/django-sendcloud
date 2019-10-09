@@ -39,6 +39,14 @@
 
     <div class="module">
       <table>
+        <caption>{% trans "sendcloud-invalid-stat" %}</caption>
+        <thead>
+          <tr>
+            <th>{% trans "send-date" %}</th>
+            <th>{% trans "send-user" %}</th>
+            <th>{% trans "send-domain" %}</th>
+          </tr>
+        </thead>
         <tbody>
         {% for row in invalid_stat %}
           <tr>
