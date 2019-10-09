@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 14:40+0800\n"
+"POT-Creation-Date: 2019-10-09 14:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,6 @@ msgstr ""
 #: templates/sendcloud/api_user/list.html:19
 #: templates/sendcloud/dashboard.html:41
 #: templates/sendcloud/members/list.html:42
-#: templates/sendcloud/template/list.html:26
 msgid "name"
 msgstr ""
 
@@ -53,13 +52,11 @@ msgstr ""
 
 #: templates/sendcloud/address/list.html:38
 #: templates/sendcloud/members/list.html:44
-#: templates/sendcloud/template/list.html:29
 msgid "gmtCreated"
 msgstr ""
 
 #: templates/sendcloud/address/list.html:39
 #: templates/sendcloud/members/list.html:45
-#: templates/sendcloud/template/list.html:30
 msgid "gmtUpdated"
 msgstr ""
 
@@ -136,28 +133,32 @@ msgid "sendcloud-mail-template"
 msgstr "邮件模版"
 
 #: templates/sendcloud/dashboard.html:12
+#: templates/sendcloud/template/list.html:26
 msgid "template-name"
 msgstr "模版名称"
 
 #: templates/sendcloud/dashboard.html:13
+#: templates/sendcloud/template/list.html:27
 msgid "template-invoke-name"
 msgstr "调用名称"
 
 #: templates/sendcloud/dashboard.html:14
+#: templates/sendcloud/template/list.html:28
 msgid "template-type"
 msgstr "类型"
 
 #: templates/sendcloud/dashboard.html:15
-msgid "template-created-at"
-msgstr "创建时间"
+#: templates/sendcloud/template/list.html:30
+msgid "template-updated-at"
+msgstr "更新时间"
 
 #: templates/sendcloud/dashboard.html:37
-msgid "Recent Account info"
-msgstr ""
+msgid "recent-account-info"
+msgstr "账户基本信息"
 
 #: templates/sendcloud/dashboard.html:42
 msgid "info"
-msgstr ""
+msgstr "基本信息"
 
 #: templates/sendcloud/dashboard.html:47
 msgid "username"
@@ -203,10 +204,9 @@ msgstr "成员"
 msgid "vars"
 msgstr ""
 
-#: templates/sendcloud/template/list.html:27
-msgid "invokeName"
-msgstr ""
+#: templates/sendcloud/template/list.html:29
+msgid "template-created-at"
+msgstr "创建时间"
 
-#: templates/sendcloud/template/list.html:28
-msgid "templateType"
-msgstr "模版类型"
+#~ msgid "templateType"
+#~ msgstr "模版类型"

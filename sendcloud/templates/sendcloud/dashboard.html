@@ -8,12 +8,12 @@
       <h2>{% trans "sendcloud-mail-template" %}</h2>
       <table>
         <thead>
-          <tr>
-            <th>{% trans 'template-name' %}</th>
-            <th>{% trans 'template-invoke-name' %}</th>
-            <th>{% trans 'template-type' %}</th>
-            <th>{% trans 'template-created-at' %}</th>
-          </tr>
+        <tr>
+          <th>{% trans 'template-name' %}</th>
+          <th>{% trans 'template-invoke-name' %}</th>
+          <th>{% trans 'template-type' %}</th>
+          <th>{% trans 'template-updated-at' %}</th>
+        </tr>
         </thead>
         <tbody>
         {% for row in template_list %}
@@ -21,7 +21,7 @@
             <td>{{ row.name }}</td>
             <td>{{ row.invokeName }}</td>
             <td>{{ row.templateType }}</td>
-            <td>{{ row.gmtCreated }}</td>
+            <td>{{ row.gmtUpdated }}</td>
           </tr>
         {% endfor %}
         </tbody>
