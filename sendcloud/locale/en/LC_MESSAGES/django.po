@@ -1,0 +1,211 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-09 14:40+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/sendcloud/address/list.html:21
+msgid "email address list"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:24
+msgid "add"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:33
+#: templates/sendcloud/api_user/list.html:19
+#: templates/sendcloud/dashboard.html:41
+#: templates/sendcloud/members/list.html:42
+#: templates/sendcloud/template/list.html:26
+msgid "name"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:34
+#: templates/sendcloud/members/list.html:41
+msgid "address"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:35
+msgid "listType"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:36
+msgid "memberCount"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:37
+msgid "description"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:38
+#: templates/sendcloud/members/list.html:44
+#: templates/sendcloud/template/list.html:29
+msgid "gmtCreated"
+msgstr ""
+
+#: templates/sendcloud/address/list.html:39
+#: templates/sendcloud/members/list.html:45
+#: templates/sendcloud/template/list.html:30
+msgid "gmtUpdated"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:20
+msgid "sendDate"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:22
+msgid "domain"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:23
+msgid "sendcloudBlacklist"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:24
+msgid "ubsubscribe"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:25
+msgid "espUnvaliable"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:26
+msgid "recipientAddressError"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:28
+msgid "recipientNotFound"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:29
+msgid "spamEmails"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:30
+msgid "senderOrRecipientRejected"
+msgstr ""
+
+#: templates/sendcloud/analytics/invalid_stat.html:31
+msgid "others"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:20
+msgid "cType"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:21
+msgid "emailType"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:22
+msgid "domainName"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:23
+msgid "neteaseSender"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:24
+msgid "click"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:25
+msgid "open"
+msgstr ""
+
+#: templates/sendcloud/api_user/list.html:26
+msgid "unsubscribe"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:8
+msgid "sendcloud-mail-template"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:12
+msgid "template-name"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:13
+msgid "template-invoke-name"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:14
+msgid "template-type"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:15
+msgid "template-created-at"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:37
+msgid "Recent Account info"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:42
+msgid "info"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:47
+msgid "username"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:51
+msgid "phone"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:56
+msgid "email"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:61
+msgid "avaliable-balance"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:66
+msgid "balance"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:71
+msgid "reputation"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:76
+msgid "account-type"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:81
+msgid "today-used-quota"
+msgstr ""
+
+#: templates/sendcloud/dashboard.html:86
+msgid "quota"
+msgstr ""
+
+#: templates/sendcloud/members/list.html:40
+msgid "member"
+msgstr ""
+
+#: templates/sendcloud/members/list.html:43
+msgid "vars"
+msgstr ""
+
+#: templates/sendcloud/template/list.html:27
+msgid "invokeName"
+msgstr ""
+
+#: templates/sendcloud/template/list.html:28
+msgid "templateType"
+msgstr ""
