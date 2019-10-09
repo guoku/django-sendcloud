@@ -41,15 +41,12 @@ class TemplateAPI(SendCloudAPIBase):
     def delete_template_url(self):
         return delete_template()
 
-    def list(self, template_type=1, star=0, limit=100):
-        # _data = self.get_payload()
-
+    def list(self, template_type=1, start=0, limit=100):
         _data = {
             "templateType": template_type,
-            "start": star,
+            "start": start,
             "limit": limit,
         }
-
         if self.invoke_name:
             _data.update(
                 {
