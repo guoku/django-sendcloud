@@ -38,6 +38,9 @@ SEND_CLOUD_DEFAULTS = {
         "list": "{base_url}/apiuser/list".format(base_url=BASE_URL),
         "add": "{base_url}/apiuser/add".format(base_url=BASE_URL),
     },
+    "email_status": {
+        "status": "{base_url}/data/emailStatus".format(base_url=BASE_URL),
+    },
     "analytics": {
         "invalid_stat": "{base_url}/invalidstat/list".format(base_url=BASE_URL)
     },
@@ -192,11 +195,20 @@ def api_user_add_url():
     return _info.get("add")
 
 
+#
 # http://www.sendcloud.net/doc/email_v2/stats_do/#_3
 # ----------------------------------------------------------------------------------------------------------------------
 def get_invalid_stat_url():
     _analytics = get_send_cloud_setting("analytics")
     return _analytics.get("invalid_stat")
+
+
+#
+# http://www.sendcloud.net/doc/email_v2/deliver_response/
+# ----------------------------------------------------------------------------------------------------------------------
+def get_email_status():
+    _status = get_send_cloud_setting("email_status")
+    return _status.get("status")
 
 
 if __name__ == "__main__":
