@@ -2,15 +2,17 @@ import logging
 from django.views import generic
 from sendcloud.core.user_info import UserInfoAPI
 
-logger = logging.getLogger('sendcloud')
+logger = logging.getLogger("sendcloud")
 
 
-class DashboardView(generic.TemplateView):
-    template_name = 'sendcloud/dashboard.html'
-
+class UserInfoMixin(object):
     def get_userinfo(self):
         r = UserInfoAPI().user_info()
-        return r['info']
+        return r["info"]
+
+
+class DashboardView(UserInfoMixin, generic.TemplateView):
+    template_name = "sendcloud/dashboard.html"
 
     def get_context_data(self, **kwargs):
         _context = super(DashboardView, self).get_context_data()
