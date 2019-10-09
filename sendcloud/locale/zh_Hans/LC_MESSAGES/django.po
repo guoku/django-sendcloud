@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-09 14:49+0800\n"
+"POT-Creation-Date: 2019-10-09 17:44+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: templates/sendcloud/address/list.html:33
 #: templates/sendcloud/api_user/list.html:19
-#: templates/sendcloud/dashboard.html:41
+#: templates/sendcloud/dashboard.html:50
 #: templates/sendcloud/members/list.html:42
 msgid "name"
 msgstr ""
@@ -128,71 +128,76 @@ msgstr ""
 msgid "unsubscribe"
 msgstr ""
 
-#: templates/sendcloud/dashboard.html:8
+#: templates/sendcloud/dashboard.html:16
 msgid "sendcloud-mail-template"
 msgstr "邮件模版"
 
-#: templates/sendcloud/dashboard.html:12
+#: templates/sendcloud/dashboard.html:19
 #: templates/sendcloud/template/list.html:26
 msgid "template-name"
 msgstr "模版名称"
 
-#: templates/sendcloud/dashboard.html:13
+#: templates/sendcloud/dashboard.html:20
 #: templates/sendcloud/template/list.html:27
 msgid "template-invoke-name"
 msgstr "调用名称"
 
-#: templates/sendcloud/dashboard.html:14
+#: templates/sendcloud/dashboard.html:21
 #: templates/sendcloud/template/list.html:28
 msgid "template-type"
 msgstr "类型"
 
-#: templates/sendcloud/dashboard.html:15
+#: templates/sendcloud/dashboard.html:22
+#: templates/sendcloud/template/list.html:29
+msgid "template-created-at"
+msgstr "创建时间"
+
+#: templates/sendcloud/dashboard.html:23
 #: templates/sendcloud/template/list.html:30
 msgid "template-updated-at"
 msgstr "更新时间"
 
-#: templates/sendcloud/dashboard.html:37
+#: templates/sendcloud/dashboard.html:46
 msgid "recent-account-info"
 msgstr "账户基本信息"
 
-#: templates/sendcloud/dashboard.html:42
+#: templates/sendcloud/dashboard.html:51
 msgid "info"
 msgstr "基本信息"
 
-#: templates/sendcloud/dashboard.html:47
+#: templates/sendcloud/dashboard.html:56
 msgid "username"
 msgstr ""
 
-#: templates/sendcloud/dashboard.html:51
+#: templates/sendcloud/dashboard.html:60
 msgid "phone"
 msgstr "电话"
 
-#: templates/sendcloud/dashboard.html:56
+#: templates/sendcloud/dashboard.html:65
 msgid "email"
 msgstr "邮箱"
 
-#: templates/sendcloud/dashboard.html:61
+#: templates/sendcloud/dashboard.html:70
 msgid "avaliable-balance"
 msgstr "可用余额"
 
-#: templates/sendcloud/dashboard.html:66
+#: templates/sendcloud/dashboard.html:75
 msgid "balance"
 msgstr "余额"
 
-#: templates/sendcloud/dashboard.html:71
+#: templates/sendcloud/dashboard.html:80
 msgid "reputation"
 msgstr "信用度"
 
-#: templates/sendcloud/dashboard.html:76
+#: templates/sendcloud/dashboard.html:85
 msgid "account-type"
 msgstr "账号类型"
 
-#: templates/sendcloud/dashboard.html:81
+#: templates/sendcloud/dashboard.html:90
 msgid "today-used-quota"
 msgstr "当天请求配额"
 
-#: templates/sendcloud/dashboard.html:86
+#: templates/sendcloud/dashboard.html:95
 msgid "quota"
 msgstr "配额"
 
@@ -204,9 +209,13 @@ msgstr "成员"
 msgid "vars"
 msgstr ""
 
-#: templates/sendcloud/template/list.html:29
-msgid "template-created-at"
-msgstr "创建时间"
+#: templatetags/sendcloud_tags.py:16
+msgid "trigging"
+msgstr "触发"
+
+#: templatetags/sendcloud_tags.py:17
+msgid "batch"
+msgstr "批量"
 
 #~ msgid "templateType"
 #~ msgstr "模版类型"

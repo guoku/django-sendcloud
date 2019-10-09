@@ -24,7 +24,6 @@ python setup.py install
 ### 在 Django 的 settings.py 加入  
 
 ```.python
-
 # mail config
 EMAIL_BACKEND = 'sendcloud.backend.SendCloudBackend'
 DEFAULT_FROM_EMAIL = "noreply@example.com"

@@ -1,17 +1,25 @@
 {% extends "admin/index.html" %}
 {% load i18n %}
 {% load admin_static %}
+{% load sendcloud_tags %}
+
+{% block extrastyle %}{{ block.super }}
+  <style>.dashboard #content {
+    width: 80%;
+  }</style>
+{% endblock %}
 
 {% block content %}
   <div id="content-main">
     <div class="sendcloud-template module">
-      <h2>{% trans "sendcloud-mail-template" %}</h2>
       <table>
+        <caption>{% trans "sendcloud-mail-template" %}</caption>
         <thead>
         <tr>
           <th>{% trans 'template-name' %}</th>
           <th>{% trans 'template-invoke-name' %}</th>
           <th>{% trans 'template-type' %}</th>
+          <th>{% trans 'template-created-at' %}</th>
           <th>{% trans 'template-updated-at' %}</th>
         </tr>
         </thead>
@@ -20,7 +28,8 @@
           <tr>
             <td>{{ row.name }}</td>
             <td>{{ row.invokeName }}</td>
-            <td>{{ row.templateType }}</td>
+            <td>{{ row.templateType|template_type }}</td>
+            <td>{{ row.gmtCreated }}</td>
             <td>{{ row.gmtUpdated }}</td>
           </tr>
         {% endfor %}
