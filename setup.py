@@ -1,11 +1,11 @@
 from setuptools import setup
-from sendcloud import version
+import sendcloud
 
 DESCRIPTION = "A Django email backend for SendCloud"
 
 LONG_DESCRIPTION = None
 
-VERSION = version.__version__
+VERSION = sendcloud.__version__
 
 try:
     LONG_DESCRIPTION = open("README.md").read()
