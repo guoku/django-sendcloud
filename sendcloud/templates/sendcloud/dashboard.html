@@ -36,8 +36,21 @@
         </tbody>
       </table>
     </div>
-  </div>
 
+    <div class="module">
+      <table>
+        <tbody>
+        {% for row in invalid_stat %}
+          <tr>
+            <td>{{ row.sendDate }}</td>
+            <td>{{ row.apiUser }}</td>
+            <td>{{ row.domain }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 {% endblock %}
 
 {% block sidebar %}

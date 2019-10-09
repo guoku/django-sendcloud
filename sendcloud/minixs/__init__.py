@@ -10,5 +10,5 @@ class TemplateListMixin(object):
 
 class MailStatusMixin(object):
     def get_invalid_stat(self):
-        _rs = AnalyticsAPI.invalid_stat()
-        return _rs
+        _rs = AnalyticsAPI().invalid_stat(days=1)
+        return _rs["info"]["dataList"]
