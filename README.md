@@ -9,16 +9,15 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/edison7500/django-sendcloud.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fedison7500%2Fdjango-sendcloud)
 
 
-send cloud django 插件
+---
 
-> 本人已经离开果库。因此，本项目 fork 到我自己的 github 仓库进行维护。
+> Send Cloud django 插件
+    > 本人已经离开果库。因此，本项目 fork 到我自己的 github 仓库进行维护。
 
-
-## Overview
 
 ---
 
-### Install 
+## Install 
 
 ```.bash
 python setup.py install
