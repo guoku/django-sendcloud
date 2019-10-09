@@ -1,4 +1,4 @@
-## Django SendCloud
+# Django SendCloud
 
 
 [![GitHub license](https://img.shields.io/github/license/edison7500/django-sendcloud.svg)](https://github.com/edison7500/django-sendcloud/blob/master/LICENSE)
@@ -49,23 +49,22 @@ SEND_CLOUD_KEY = {
 
 ### 地址列表
 
-1. 查询列表成员
-    ```.shell
-    python manage.py sc_members -l -L  xxxxx@maillist.sendcloud.org
-    ```
-    
-2. 添加列表成员
+* 查询列表成员
+```.shell
+python manage.py sc_members -l -L xxxxx@maillist.sendcloud.org
+```
 
-    ```.shell
-    python manage.py sc_members -a -L  xxxxx@maillist.sendcloud.org -m xxxx@example.com
-    ```
+* 添加列表成员
+```.shell
+python manage.py sc_members -a -L  xxxxx@maillist.sendcloud.org -m xxxx@example.com
+```
     
-3. 修改列表成员
-   ```.shell
-   python manage.py sc_members -u -L xxxxx@maillist.sendcloud.org -m xxxx@example.com -n yyyy@example.com
-   ```
+* 修改列表成员
+```.shell
+python manage.py sc_members -u -L xxxxx@maillist.sendcloud.org -m xxxx@example.com -n yyyy@example.com
+```
 
-4. 删除列表成员
-    ```.shell
-    python manage.py sc_members -d -L xxxxx@maillist.sendcloud.org -m xxxx@example.com
-    ```
+* 删除列表成员
+```.shell
+python manage.py sc_members -d -L xxxxx@maillist.sendcloud.org -m xxxx@example.com
+```
