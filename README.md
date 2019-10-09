@@ -11,15 +11,13 @@
 
 ---
 
-> Send Cloud django 插件
-    > 本人已经离开果库。因此，本项目 fork 到我自己的 github 仓库进行维护。
+> 本人已经离开果库。因此，本项目 fork 到我自己的 github 仓库进行维护。
 
-
----
 
 ## Install 
 
-```.bash
+```.shell script
+git clone https://github.com/edison7500/django-sendcloud.git
 python setup.py install
 ```
 
