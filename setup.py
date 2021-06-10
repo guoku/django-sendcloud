@@ -31,7 +31,7 @@ setup(
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     platforms=['any'],
-    install_requires=['requests==2.6.0', 'django==1.6.11'],
+    install_requires=['requests==2.6.0', 'django==2.2.24'],
     classifiers=CLASSIFIERS,
     zip_safe = False,
 )
